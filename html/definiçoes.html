@@ -1,11 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Attentus - Definições</title>
+    <link rel="stylesheet" href="definiçoes.css">
 </head>
 <body>
-    
+
+<div class="phone">
+
+    <!-- Header -->
+    <header>
+        <h1>Attentus</h1>
+        <div class="user-icon">👤</div>
+    </header>
+
+    <!-- Título -->
+    <section class="settings-title">
+        ⚙️ Definições
+    </section>
+
+    <!-- Sliders -->
+    <div class="slider-group">
+        <label>🔊 Efeitos de som</label>
+        <input type="range" min="0" max="100" value="55">
+    </div>
+
+    <div class="slider-group">
+        <label>🎵 Música</label>
+        <input type="range" min="0" max="100" value="75">
+    </div>
+
+    <!-- Botões -->
+    <button class="menu-btn" onclick="toggleSupport()">❓ Ajuda e suporte</button>
+    <button class="menu-btn" onclick="toggleLanguage()">🌐 Linguagem</button>
+
+    <!-- Modal Linguagem -->
+    <div class="popup hidden" id="languagePopup">
+        <div class="option">🇵🇹 Português</div>
+        <div class="option">🇬🇧 English</div>
+        <div class="option">🇪🇸 Español</div>
+        <div class="option">🇩🇪 Deutsch</div>
+        <div class="option">🇫🇷 Français</div>
+        <div class="option">🇨🇳 中文</div>
+    </div>
+
+    <!-- Modal Ajuda -->
+    <div class="popup hidden" id="supportPopup">
+        <div class="option">💬 FAQ</div>
+        <div class="option">📘 Guia</div>
+        <div class="option">✉ support@attentus.com</div>
+        <div class="option">📞 +351 912 345 678</div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
