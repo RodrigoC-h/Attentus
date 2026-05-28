@@ -1,0 +1,212 @@
+/* ==========================================================================
+   1. RESET & VARIÁVEIS DE CORES
+   ========================================================================== */
+:root {
+  --bg-color: #1a1b23;
+  --card-bg: #212330;
+  --border-color: #53638c;
+  --tab-active: #c5d1fc;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. ESTRUTURA PRINCIPAL (DESKTOP)
+   ========================================================================== */
+.shop-container {
+  width: 100%;
+  max-width: 1200px; /* Alarga o site para ocupar bem o monitor */
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* Navbar / Cabeçalho */
+.shop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.shop-header h1.logo {
+  font-size: 32px;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.header-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 22px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.icon-btn:hover {
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   3. CARTÃO PRINCIPAL DA LOJA
+   ========================================================================== */
+.shop-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 35px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Pré-visualização do Avatar */
+.avatar-preview {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.avatar-circle {
+  width: 120px;
+  height: 120px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.avatar-circle img {
+  width: 80%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Categorias (Navegação por Abas) */
+.categories-tabs {
+  display: flex;
+  justify-content: center; /* Centraliza as abas no desktop */
+  gap: 15px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+  margin-bottom: 35px;
+}
+
+.tab-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px 30px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.tab-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+  background-color: var(--tab-active);
+  border-color: var(--tab-active);
+  color: #1a1b23;
+}
+
+/* ==========================================================================
+   4. GRELHA DE PRODUTOS (ADAPTÁVEL)
+   ========================================================================== */
+.items-grid {
+  display: grid;
+  /* Cria colunas automaticamente de no mínimo 180px até preencher o ecrã inteiro */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 25px;
+}
+
+/* Caixas Individuais dos Itens */
+.item-box {
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.02);
+  min-height: 220px;
+  box-sizing: border-box;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.item-box:hover {
+  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.item-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.item-image img {
+  max-width: 75px;
+  max-height: 75px;
+  object-fit: contain;
+}
+
+/* Botões de Estado (Comprar / Equipado) */
+.item-status-btn {
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  padding: 8px 0;
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.item-status-btn:hover {
+  opacity: 0.9;
+}
+
+.equipped-text {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.buy-btn {
+  background-color: #9cb1f9;
+  color: #000000;
+}
+
+.coin-icon {
+  width: 16px;
+  height: auto;
+}
