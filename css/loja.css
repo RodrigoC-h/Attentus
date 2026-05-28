@@ -132,9 +132,8 @@ body {
   color: #1a1b23;
 }
 
-/* ==========================================================================
-   4. GRELHA DE PRODUTOS (ADAPTÁVEL)
-   ========================================================================== */
+
+/*4. GRELHA DE PRODUTOS (ADAPTÁVEL)/*
 .items-grid {
   display: grid;
   /* Cria colunas automaticamente de no mínimo 180px até preencher o ecrã inteiro */
