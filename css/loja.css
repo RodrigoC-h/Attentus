@@ -133,10 +133,8 @@ body {
 }
 
 
-/*4. GRELHA DE PRODUTOS (ADAPTÁVEL)/*
 .items-grid {
   display: grid;
-  /* Cria colunas automaticamente de no mínimo 180px até preencher o ecrã inteiro */
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 25px;
 }
