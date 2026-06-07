@@ -7,6 +7,16 @@
   --border-color: #53638c;
   --tab-active: #c5d1fc;
   --text-color: #ffffff;
+  --logo-color: #c5d1fc;
+  --side-padding: 60px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
@@ -14,35 +24,57 @@ body {
   color: var(--text-color);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  width: 100%;
   min-height: 100vh;
 }
 
 /* ==========================================================================
-   2. ESTRUTURA PRINCIPAL (DESKTOP)
+   2. ZONA DE CONTEÚDO — centra o painel da loja abaixo do header
    ========================================================================== */
-.shop-container {
+.shop-content {
   width: 100%;
-  max-width: 1200px; /* Alarga o site para ocupar bem o monitor */
-  padding: 40px 20px;
+  padding: 40px var(--side-padding) 60px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   2.1 PAINEL DA LOJA (Shop Card) — agrupa avatar, abas e grelha
+   ========================================================================== */
+.shop-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 1400px;
+  padding: 40px;
   box-sizing: border-box;
 }
 
-/* Navbar / Cabeçalho */
-.shop-header {
+/* ==========================================================================
+   3. BARRA DE TOPO ESTILO JOGO (HEADER) — fluida, de ponta a ponta
+   ========================================================================== */
+.game-bar {
+  width: 100%;
+  background: linear-gradient(180deg, #16171d 0%, #1f2029 100%);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Conteúdo da barra (logo à esquerda, ícones de perfil/definições à direita) */
+.game-bar-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  padding: 24px var(--side-padding);
 }
 
-.shop-header h1.logo {
-  font-size: 32px;
+.game-bar-content h1.logo {
+  font-size: 34px;
   margin: 0;
   font-weight: 800;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  color: var(--logo-color);
+  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
 }
 
 .header-icons {
@@ -52,37 +84,29 @@ body {
 
 .icon-btn {
   background: none;
-  border: none;
-  color: var(--text-color);
-  font-size: 22px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  color: var(--logo-color);
+  font-size: 18px;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: background-color 0.2s, opacity 0.2s;
 }
 
 .icon-btn:hover {
-  opacity: 0.7;
+  background-color: rgba(197, 209, 252, 0.08);
 }
 
-/* ==========================================================================
-   3. CARTÃO PRINCIPAL DA LOJA
-   ========================================================================== */
-.shop-card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 24px;
-  padding: 35px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* Pré-visualização do Avatar */
+/* Pré-visualização do Avatar: flutua centrada sobre o fundo do site */
 .avatar-preview {
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
+  margin: 40px 0;
 }
 
 .avatar-circle {
+  position: relative;
   width: 120px;
   height: 120px;
   background-color: #ffffff;
@@ -94,10 +118,29 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.avatar-circle img {
+/* Camadas do avatar: a base fica por baixo, os equipamentos sobrepõem-se */
+.avatar-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.avatar-base {
+  position: relative;
   width: 80%;
   height: auto;
-  object-fit: contain;
+}
+
+/* Camadas de equipamento começam vazias/escondidas até existir um item equipado */
+.avatar-layer:not(.avatar-base) {
+  display: none;
+}
+
+.avatar-layer:not(.avatar-base)[src]:not([src=""]) {
+  display: block;
 }
 
 /* Categorias (Navegação por Abas) */
@@ -135,8 +178,9 @@ body {
 
 .items-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 28px;
+  width: 100%;
 }
 
 /* Caixas Individuais dos Itens */
