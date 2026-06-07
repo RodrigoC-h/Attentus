@@ -1,0 +1,253 @@
+/* ==========================================================================
+   1. RESET & VARIÁVEIS DE CORES
+   ========================================================================== */
+:root {
+  --bg-color: #1a1b23;
+  --card-bg: #212330;
+  --border-color: #53638c;
+  --tab-active: #c5d1fc;
+  --text-color: #ffffff;
+  --logo-color: #c5d1fc;
+  --side-padding: 60px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. ZONA DE CONTEÚDO — centra o painel da loja abaixo do header
+   ========================================================================== */
+.shop-content {
+  width: 100%;
+  padding: 40px var(--side-padding) 60px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   2.1 PAINEL DA LOJA (Shop Card) — agrupa avatar, abas e grelha
+   ========================================================================== */
+.shop-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 1400px;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   3. BARRA DE TOPO ESTILO JOGO (HEADER) — fluida, de ponta a ponta
+   ========================================================================== */
+.game-bar {
+  width: 100%;
+  background: linear-gradient(180deg, #16171d 0%, #1f2029 100%);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Conteúdo da barra (logo à esquerda, ícones de perfil/definições à direita) */
+.game-bar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px var(--side-padding);
+}
+
+.game-bar-content h1.logo {
+  font-size: 34px;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--logo-color);
+  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+}
+
+.header-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.icon-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  color: var(--logo-color);
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.icon-btn:hover {
+  background-color: rgba(197, 209, 252, 0.08);
+}
+
+/* Pré-visualização do Avatar: flutua centrada sobre o fundo do site */
+.avatar-preview {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.avatar-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Camadas do avatar: a base fica por baixo, os equipamentos sobrepõem-se */
+.avatar-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.avatar-base {
+  position: relative;
+  width: 80%;
+  height: auto;
+}
+
+/* Camadas de equipamento começam vazias/escondidas até existir um item equipado */
+.avatar-layer:not(.avatar-base) {
+  display: none;
+}
+
+.avatar-layer:not(.avatar-base)[src]:not([src=""]) {
+  display: block;
+}
+
+/* Categorias (Navegação por Abas) */
+.categories-tabs {
+  display: flex;
+  justify-content: center; /* Centraliza as abas no desktop */
+  gap: 15px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+  margin-bottom: 35px;
+}
+
+.tab-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px 30px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.tab-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+  background-color: var(--tab-active);
+  border-color: var(--tab-active);
+  color: #1a1b23;
+}
+
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 28px;
+  width: 100%;
+}
+
+/* Caixas Individuais dos Itens */
+.item-box {
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.02);
+  min-height: 220px;
+  box-sizing: border-box;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.item-box:hover {
+  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.item-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.item-image img {
+  max-width: 75px;
+  max-height: 75px;
+  object-fit: contain;
+}
+
+/* Botões de Estado (Comprar / Equipado) */
+.item-status-btn {
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  padding: 8px 0;
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.item-status-btn:hover {
+  opacity: 0.9;
+}
+
+.equipped-text {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.buy-btn {
+  background-color: #9cb1f9;
+  color: #000000;
+}
+
+.coin-icon {
+  width: 16px;
+  height: auto;
+}

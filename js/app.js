@@ -5,3 +5,4 @@ document.addEventListener("DOMContentLoaded", () => {
     const definicoesModel = new DefinicoesModel();
     new DefinicoesView(definicoesModel);
 });
+
