@@ -1,11 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Perfil</title>
+
+    <link rel="stylesheet" href="../css/perfil.css">
 </head>
 <body>
-    
+
+    <header>
+        <h1>Attentus</h1>
+
+        <button class="settings-btn">
+            ⚙
+        </button>
+    </header>
+
+    <main>
+
+        <section class="top-section">
+
+            <div class="left-column">
+
+                <div class="avatar-container">
+                    <img src="../assets/images/avatar.png" alt="Avatar">
+                </div>
+
+                <button class="edit-btn">
+                    EDITAR ✎
+                </button>
+
+            </div>
+
+            <div class="right-column">
+
+                <div class="card user-card">
+
+                    <div class="username">
+                        User
+                    </div>
+
+                    <div class="equipped">
+
+                        <div class="equip-circle">
+                            🏆
+                        </div>
+
+                        <div class="equip-circle"></div>
+
+                        <div class="equip-circle"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="card xp-card">
+
+                    <h3>Nível de Experiência</h3>
+
+                    <span>748 / 1000</span>
+
+                    <div class="xp-bar">
+                        <div class="xp-fill"></div>
+                    </div>
+
+                </div>
+
+                <div class="card saldo-card">
+
+                    <span>Saldo:</span>
+
+                    <div class="saldo-value">
+                        80 🪙
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="conquistas-card">
+
+            <h2>Conquistas</h2>
+
+            <div class="conquistas">
+
+                <div class="conquista">
+                    <img src="../assets/images/conquista1.png" alt="">
+                    <h4>Primeira Vitória</h4>
+                    <span>Completado</span>
+
+                    <div class="progress">
+                        <div class="progress-fill full"></div>
+                    </div>
+                </div>
+
+                <div class="conquista">
+                    <img src="../assets/images/conquista2.png" alt="">
+                    <h4>10 Jogos Jogados</h4>
+                    <span>7/10</span>
+
+                    <div class="progress">
+                        <div class="progress-fill medium"></div>
+                    </div>
+                </div>
+
+                <div class="conquista">
+                    <img src="../assets/images/conquista3.png" alt="">
+                    <h4>Ofensiva</h4>
+                    <span>7/15 Dias</span>
+
+                    <div class="progress">
+                        <div class="progress-fill half"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="expand-btn">
+                ↓
+            </div>
+
+        </section>
+
+        <button class="logout-btn">
+            ⎋ Terminar sessão
+        </button>
+
+    </main>
+
 </body>
 </html>
