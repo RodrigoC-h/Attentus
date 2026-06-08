@@ -1,0 +1,145 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#181827;
+    color:white;
+    font-family:Arial, sans-serif;
+
+    max-width:390px;
+    min-height:100vh;
+
+    margin:auto;
+}
+
+header{
+    height:95px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 18px;
+
+    background:linear-gradient(
+        to bottom,
+        #2c2d38,
+        #181827
+    );
+}
+
+.logo{
+    color:#b8ccff;
+    font-size:2rem;
+    font-weight:bold;
+}
+
+.header-icons{
+    display:flex;
+    gap:12px;
+}
+
+.header-icons button{
+    background:none;
+    border:none;
+
+    color:#b8ccff;
+    font-size:1.5rem;
+
+    cursor:pointer;
+}
+
+main{
+    padding:22px 15px;
+}
+
+.nivel-badge{
+    display:inline-block;
+
+    padding:8px 14px;
+
+    background:#b8ccff;
+    color:#111;
+
+    border-radius:18px;
+
+    font-weight:bold;
+
+    margin-bottom:70px;
+}
+
+h1{
+    text-align:center;
+
+    margin-bottom:40px;
+
+    font-size:2rem;
+}
+
+.game-board{
+    background:#31195a;
+
+    border-radius:25px;
+
+    padding:18px;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    gap:12px;
+}
+
+.color{
+    border:none;
+
+    aspect-ratio:1;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    transition:0.15s;
+}
+
+.color:hover{
+    transform:scale(1.03);
+}
+
+.red{
+    background:#ff0000;
+}
+
+.yellow{
+    background:#ffff00;
+}
+
+.green{
+    background:#00ff00;
+}
+
+.blue{
+    background:#3f45ff;
+}
+
+.orange{
+    background:#ff7f32;
+}
+
+.purple{
+    background:#d000ff;
+}
+
+.white{
+    background:#f2f2f2;
+}
+
+.pink{
+    background:#ff2d96;
+}
+
+.cyan{
+    background:#1294b9;
+}
