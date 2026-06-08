@@ -1,0 +1,227 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#181827;
+    color:white;
+    font-family:Arial, sans-serif;
+    max-width:390px;
+    margin:auto;
+    min-height:100vh;
+}
+
+header{
+    height:80px;
+    padding:0 20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:linear-gradient(
+        to bottom,
+        #2a2c38,
+        #181827
+    );
+}
+
+.logo{
+    color:#b7cdff;
+    font-size:2rem;
+    font-weight:bold;
+}
+
+.header-icons{
+    display:flex;
+    gap:10px;
+}
+
+.header-icons button{
+    background:none;
+    border:none;
+    font-size:1.4rem;
+    cursor:pointer;
+}
+
+main{
+    padding:20px;
+}
+
+.streak{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:35px;
+    padding:0 5px;
+}
+
+.day{
+    width:28px;
+    height:28px;
+
+    border-radius:50%;
+
+    background:#d8e5ff;
+    color:#1f2535;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:0.75rem;
+    font-weight:bold;
+}
+
+.day.active{
+    box-shadow:0 0 15px gold;
+}
+
+.games-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.game-card{
+    border-radius:18px;
+    overflow:hidden;
+}
+
+/* reação */
+
+.reaction{
+    background:#25253a;
+    border:2px solid #4d4d72;
+    padding:15px;
+    text-align:center;
+}
+
+.reaction img{
+    width:85px;
+}
+
+/* sequência */
+
+.sequence{
+    background:#40206f;
+    padding:12px;
+}
+
+.sequence h3{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.sequence-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:4px;
+}
+
+.sequence-grid div{
+    aspect-ratio:1;
+    border-radius:4px;
+}
+
+.red{background:red;}
+.yellow{background:yellow;}
+.green{background:lime;}
+.blue{background:#3040ff;}
+.orange{background:orange;}
+.purple{background:#cc00ff;}
+.white{background:white;}
+.pink{background:#ff2f95;}
+.cyan{background:#0a9ac2;}
+
+/* foco */
+
+.focus{
+    grid-column:1/3;
+    background:#7da8ea;
+    padding:15px;
+}
+
+.focus-icons{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:8px;
+    margin-bottom:10px;
+}
+
+.focus-icons img{
+    width:38px;
+}
+
+.focus h3{
+    text-align:center;
+    font-size:1.5rem;
+}
+
+/* organização */
+
+.left-column{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.organization{
+    background:#ead6b2;
+    padding:8px;
+}
+
+.organization h4{
+    color:black;
+    text-align:center;
+    margin-bottom:6px;
+}
+
+.organization img{
+    width:100%;
+}
+
+/* escape */
+
+.escape{
+    background:#02173c;
+    border:2px solid #d8c071;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    padding:12px;
+}
+
+.escape h3{
+    margin-bottom:10px;
+}
+
+.escape-icons{
+    font-size:2rem;
+}
+
+/* alvo */
+
+.target{
+    background:#15937f;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    gap:10px;
+}
+
+.target img{
+    width:90px;
+}
+
+.target h3{
+    font-size:1.8rem;
+    text-align:center;
+}
