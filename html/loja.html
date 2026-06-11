@@ -3,61 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attentus - Loja</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Loja - Attentus</title>
     <link rel="stylesheet" href="../css/loja.css">
 </head>
 <body>
-    <!-- Barra de topo estilo "jogo", a toda a largura do ecrã -->
-    <header class="game-bar">
-      <div class="game-bar-content">
-        <h1 class="logo">Attentus</h1>
-        <div class="header-icons">
-          <button class="icon-btn" title="Perfil"><i class="fas fa-user"></i></button>
-          <button class="icon-btn" title="Definições"><i class="fas fa-cog"></i></button>
-        </div>
-      </div>
-    </header>
 
-    <!-- Zona de conteúdo, fora do header, que centra o painel da loja no ecrã -->
-    <main class="shop-content">
+<header>
+    <div class="logo">Attentus</div>
 
-      <!-- Painel da loja: agrupa avatar, abas e grelha num só bloco centralizado -->
-      <section class="shop-card">
+    <div class="header-icons">
+        <button class="icon-btn">👤</button>
+        <button class="icon-btn">⚙️</button>
+    </div>
+</header>
 
-        <section class="avatar-preview">
-          <div class="avatar-circle">
-            <!-- Camada base do avatar -->
-            <img src="assets/img/avatar.png" alt="Avatar Preview" class="avatar-layer avatar-base">
-            <!-- Camadas de equipamento, uma por categoria, atualizadas via JS -->
-            <img src="" alt="" class="avatar-layer avatar-layer-chapeus" data-layer="chapeus">
-            <img src="" alt="" class="avatar-layer avatar-layer-oculos" data-layer="oculos">
-            <img src="" alt="" class="avatar-layer avatar-layer-cores" data-layer="cores">
-            <img src="" alt="" class="avatar-layer avatar-layer-trofeus" data-layer="trofeus">
+  <main>
+
+      <section class="shop-container">
+
+          <!-- Avatar -->
+
+          <div class="avatar-area">
+              <div class="avatar-circle">
+                  <img src="../assets/imagens/avatar.png" alt="Avatar">
+              </div>
           </div>
-        </section>
 
-        <!-- Navegação por categorias -->
-        <nav class="categories-tabs">
-          <button class="tab-btn active" data-category="chapeus">
-            <i class="fas fa-hat-wizard"></i> Chapéus
-          </button>
-          <button class="tab-btn" data-category="oculos">
-            <i class="fas fa-glasses"></i> Óculos
-          </button>
-          <button class="tab-btn" data-category="cores">
-            <i class="fas fa-palette"></i> Cores
-          </button>
-          <button class="tab-btn" data-category="trofeus">
-            <i class="fas fa-trophy"></i> Troféus
-          </button>
-        </nav>
+          <!-- Categorias -->
 
-        <!-- Grelha de itens da loja: preenchida dinamicamente pelo loja.js a partir dos dados de cada categoria -->
-        <section class="items-grid"></section>
+          <div class="tabs">
+
+              <button class="tab active">
+                  🎩
+              </button>
+
+              <button class="tab">
+                  🕶️
+              </button>
+
+              <button class="tab">
+                  🎨
+              </button>
+
+              <button class="tab">
+                  🏆
+              </button>
+
+          </div>
+
+          <!-- Itens -->
+
+          <div class="items-grid">
+
+              <div class="item-card">
+                  <img src="../assets/imagens/boné.png" alt="Boné">
+
+                  <button class="equipado-btn">
+                      Equipado
+                  </button>
+              </div>
+
+              <div class="item-card">
+                  <img src="../assets/imagens/headphones.png" alt="Headphones">
+
+                  <button class="comprar-btn">
+                      10 🪙
+                  </button>
+              </div>
+
+              <div class="item-card">
+                  <img src="../assets/imagens/cartola.png" alt="Cartola">
+
+                  <button class="comprar-btn">
+                      10 🪙
+                  </button>
+              </div>
+
+              <div class="item-card">
+                  <img src="../assets/imagens/coroa.png" alt="Coroa">
+
+                  <button class="comprar-btn">
+                      10 🪙
+                  </button>
+              </div>
+
+              <div class="item-card">
+                  <img src="../assets/imagens/chapeu.png" alt="Chapéu">
+
+                  <button class="comprar-btn">
+                      10 🪙
+                  </button>
+              </div>
+
+              <div class="item-card">
+                  <img src="../assets/imagens/laco.png" alt="Laço">
+
+                  <button class="comprar-btn">
+                      10 🪙
+                  </button>
+              </div>
+
+              <div class="item-card">
+                  <img src="../assets/imagens/halo.png" alt="Halo">
+
+                  <button class="comprar-btn">
+                      10 🪙
+                  </button>
+              </div>
+
+              <div class="item-card">
+                  <img src="../assets/imagens/nuvem.png" alt="Nuvem">
+
+                  <button class="comprar-btn">
+                      10 🪙
+                  </button>
+              </div>
+
+              <div class="item-card">
+                  <img src="../assets/imagens/atti-icon.png" alt="Atti">
+
+                  <button class="comprar-btn">
+                      10 🪙
+                  </button>
+              </div>
+
+          </div>
+
       </section>
-    </main>
 
-    <script src="../js/loja.js"></script>
+  </main>
+
 </body>
 </html>
