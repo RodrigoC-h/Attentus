@@ -1,72 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Definições</title>
-  <link rel="stylesheet" href="../css/definiçoes.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attentus - Definições</title>
+    <link rel="stylesheet" href="../css/definiçoes.css">
 </head>
 <body>
 
-<div class="app">
+<div class="phone">
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="top-bar">
-      <span class="time">9:41</span>
-    </div>
+    <!-- Header -->
+    <header>
+        <h1>Attentus</h1>
+        <div class="user-icon">👤</div>
+    </header>
 
-    <div class="title-bar">
-      <h1>Attentus</h1>
-      <span class="user-icon">👤</span>
-    </div>
-  </div>
+    <!-- Título -->
+    <section class="settings-title">
+        ⚙️ Definições
+    </section>
 
-  <!-- CONTENT -->
-  <div class="content">
-
-    <h2 class="section-title">
-      ⚙️ Definições
-    </h2>
-    <hr>
-
-    <!-- SLIDER SOM -->
+    <!-- Slider efeitos -->
     <div class="slider-group">
-      <label>🔉 Efeitos de som</label>
-      <input type="range" id="sound" min="0" max="100">
+        <label>🔊 Efeitos de som</label>
+        <input type="range" id="soundSlider" min="0" max="100" value="55">
     </div>
 
-    <hr>
-
-    <!-- SLIDER MUSICA -->
+    <!-- Slider música -->
     <div class="slider-group">
-      <label>🎵 Música</label>
-      <input type="range" id="music" min="0" max="100">
+        <label>🎵 Música</label>
+        <input type="range" id="musicSlider" min="0" max="100" value="75">
     </div>
 
-    <hr>
-
-    <!-- BOTÃO AJUDA -->
-    <button class="btn" id="helpBtn">
-      <span>❓</span> Ajuda e suporte
+    <!-- Botão ajuda -->
+    <button class="menu-btn" id="supportBtn">
+        ❓ Ajuda e suporte
     </button>
 
-    <hr>
+    <!-- Popup ajuda -->
+    <div class="popup hidden" id="supportPopup">
+        <div class="option">💬 FAQ</div>
+        <div class="option">📘 Guia</div>
+        <div class="option">✉ support@attentus.com</div>
+        <div class="option">📞 +351 912 345 678</div>
+    </div>
 
-    <!-- BOTÃO LINGUAGEM -->
-    <button class="btn" id="langBtn">
-      <span>🌐</span> Linguagem
+    <!-- Botão linguagem -->
+    <button class="menu-btn" id="languageBtn">
+        🌐 Linguagem
     </button>
 
-    <hr>
-
-  </div>
-
-  <!-- HOME INDICATOR -->
-  <div class="home-indicator"></div>
+    <!-- Popup linguagem -->
+    <div class="popup hidden" id="languagePopup">
+        <div class="option-language" data-lang="Português">🇵🇹 Português</div>
+        <div class="option-language" data-lang="English">🇬🇧 English</div>
+        <div class="option-language" data-lang="Español">🇪🇸 Español</div>
+        <div class="option-language" data-lang="Deutsch">🇩🇪 Deutsch</div>
+        <div class="option-language" data-lang="Français">🇫🇷 Français</div>
+        <div class="option-language" data-lang="中文">🇨🇳 中文</div>
+    </div>
 
 </div>
 
-<script src="view.js"></script>
+<script type="module" src="app.js"></script>
+
 </body>
 </html>
