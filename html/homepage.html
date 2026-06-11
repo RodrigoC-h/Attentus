@@ -1,89 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
-  <link rel="stylesheet" href="../css/homepage.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attentus</title>
+    <link rel="stylesheet" href="../css/homepage.css">
 </head>
 <body>
 
-<div class="app">
+    <header class="header">
+        <h1>Attentus</h1>
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="top-bar">
-      <span>9:41</span>
-    </div>
-
-    <div class="title-bar">
-      <h1>Attentus</h1>
-      <div class="icons">
-        <span>👤</span>
-        <span>⚙️</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- CONTENT -->
-  <div class="content">
-
-    <!-- DIAS -->
-    <div class="days">
-      <hr>
-      <div class="day-list">
-        <span>20</span>
-        <span>21</span>
-        <span>22</span>
-        <span class="active">23</span>
-        <span>24</span>
-        <span>25</span>
-        <span>26</span>
-      </div>
-      <hr>
-    </div>
-
-    <!-- TITULO -->
-    <h2>Jogos recentemente jogados</h2>
-
-    <!-- CARD JOGO -->
-    <div class="game-card">
-      <div class="car">🚗</div>
-      <span>Jogo da reação</span>
-    </div>
-
-    <!-- GRID JOGOS -->
-    <div class="games-grid">
-
-      <div class="game box1">
-        <p>Repetir sequência</p>
-        <div class="colors">
-          <span style="background:red"></span>
-          <span style="background:yellow"></span>
-          <span style="background:green"></span>
-          <span style="background:blue"></span>
-          <span style="background:orange"></span>
-          <span style="background:purple"></span>
-          <span style="background:white"></span>
-          <span style="background:pink"></span>
-          <span style="background:cyan"></span>
+        <div class="header-icons">
+            <button class="icon-btn">👤</button>
+            <button class="icon-btn">⚙️</button>
         </div>
-      </div>
+    </header>
 
-      <div class="game box2">
-        <div class="target"></div>
-        <p>Jogo do alvo</p>
-      </div>
+    <main class="container">
 
-    </div>
+        <!-- Dias -->
+        <section class="dias">
+            <div class="linha"></div>
 
-    <!-- BOTÃO -->
-    <button class="more-btn">Mais jogos</button>
+            <div class="dias-container">
+                <div class="dia">20</div>
+                <div class="dia">21</div>
+                <div class="dia">22</div>
+                <div class="dia ativo">23</div>
+                <div class="dia">24</div>
+                <div class="dia">25</div>
+                <div class="dia">26</div>
+            </div>
 
-  </div>
+            <div class="linha"></div>
+        </section>
 
-</div>
+        <!-- Jogos recentes -->
+        <section>
+            <h2>Jogos recentemente jogados</h2>
 
-<script src="view.js"></script>
+            <div class="jogo-recente">
+
+                <img
+                    src="../assets/images/carro.png"
+                    alt="Jogo da reação"
+                    class="carro">
+
+                <h3>Jogo da reação</h3>
+
+            </div>
+        </section>
+
+        <!-- Jogos -->
+        <section class="jogos-grid">
+
+            <div class="card sequencia">
+                <h3>Repetir sequência</h3>
+            </div>
+
+            <div class="card alvo">
+                <h3>Jogo do alvo</h3>
+            </div>
+
+        </section>
+
+        <button class="btn-mais">
+            Mais jogos
+        </button>
+
+    </main>
+
 </body>
 </html>

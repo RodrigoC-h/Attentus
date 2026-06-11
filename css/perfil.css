@@ -1,0 +1,268 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#171827;
+    color:white;
+    font-family:Arial, Helvetica, sans-serif;
+
+    max-width:390px;
+    margin:auto;
+
+    min-height:100vh;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:24px;
+}
+
+header h1{
+    color:#b8ccff;
+    font-size:2rem;
+}
+
+.settings-btn{
+    border:none;
+    background:none;
+    color:#b8ccff;
+    font-size:1.8rem;
+    cursor:pointer;
+}
+
+main{
+    padding:20px;
+}
+
+.top-section{
+    display:flex;
+    gap:20px;
+}
+
+.left-column{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.avatar-container{
+    width:110px;
+    height:110px;
+
+    background:white;
+    border-radius:50%;
+
+    overflow:hidden;
+}
+
+.avatar-container img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.edit-btn{
+    margin-top:12px;
+
+    border:none;
+
+    background:#b8ccff;
+    color:#1d2235;
+
+    padding:10px 18px;
+
+    border-radius:20px;
+
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.right-column{
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.card{
+    border:1px solid #b8ccff;
+
+    border-radius:14px;
+
+    padding:12px;
+
+    background:#1d2032;
+}
+
+.user-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.username{
+    font-weight:bold;
+}
+
+.equipped{
+    display:flex;
+    gap:10px;
+}
+
+.equip-circle{
+    width:26px;
+    height:26px;
+
+    border-radius:50%;
+
+    border:2px solid #d5e5ff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.xp-card h3{
+    font-size:0.9rem;
+    margin-bottom:6px;
+}
+
+.xp-card span{
+    font-size:0.75rem;
+}
+
+.xp-bar{
+    margin-top:8px;
+
+    width:100%;
+    height:10px;
+
+    background:white;
+
+    border-radius:10px;
+}
+
+.xp-fill{
+    width:74%;
+    height:100%;
+
+    background:#a9c4ff;
+
+    border-radius:10px;
+}
+
+.saldo-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.saldo-value{
+    font-weight:bold;
+}
+
+.conquistas-card{
+    margin-top:18px;
+
+    border:1px solid #b8ccff;
+    border-radius:20px;
+
+    padding:18px;
+}
+
+.conquistas-card h2{
+    margin-bottom:18px;
+}
+
+.conquistas{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.conquista{
+    text-align:center;
+    flex:1;
+}
+
+.conquista img{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+}
+
+.conquista h4{
+    font-size:0.7rem;
+    margin-top:6px;
+}
+
+.conquista span{
+    font-size:0.65rem;
+}
+
+.progress{
+    margin-top:8px;
+
+    height:8px;
+    background:white;
+
+    border-radius:8px;
+}
+
+.progress-fill{
+    height:100%;
+    background:#a9c4ff;
+    border-radius:8px;
+}
+
+.full{
+    width:100%;
+}
+
+.medium{
+    width:70%;
+}
+
+.half{
+    width:50%;
+}
+
+.expand-btn{
+    margin-top:18px;
+
+    text-align:center;
+
+    font-size:2rem;
+
+    cursor:pointer;
+}
+
+.logout-btn{
+    display:block;
+
+    margin:25px auto;
+
+    border:none;
+
+    background:#262838;
+
+    color:white;
+
+    padding:12px 22px;
+
+    border-radius:10px;
+
+    font-size:1rem;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 8px rgba(0,0,0,.3);
+}
