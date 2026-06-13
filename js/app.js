@@ -1,0 +1,37 @@
+import HomepageView from "./view/HomepageView.js";
+import MiniJogosView from "./view/MiniJogosView.js";
+import DefinicoesView from "./view/DefinicoesView.js";
+import PerfilView from "./view/PerfilView.js";
+import LojaView from "./view/LojaView.js";
+import LoginView from "./view/LoginView.js";
+import IntroView from "./view/IntroView.js";
+
+const pagina = window.location.pathname;
+
+if (pagina.includes("homepage.html")) {
+    new HomepageView();
+}
+
+if (pagina.includes("mini-jogos.html")) {
+    new MiniJogosView();
+}
+
+if (pagina.includes("definicoes.html")) {
+    new DefinicoesView();
+}
+
+if (pagina.includes("perfil.html")) {
+    new PerfilView();
+}
+
+if (pagina.includes("loja.html")) {
+    new LojaView();
+}
+
+if (pagina.includes("login.html")) {
+    new LoginView();
+}
+
+if (pagina.includes("intro.html")) {
+    new IntroView();
+}

@@ -1,25 +1,89 @@
-const btnLogin = document.getElementById("btnLogin");
-const btnRegisto = document.getElementById("btnRegisto");
+export default class LoginView {
 
-const loginForm = document.getElementById("loginForm");
-const registoForm = document.getElementById("registoForm");
+    constructor() {
 
-btnLogin.addEventListener("click", () => {
+        this.bindEvents();
+        this.bindSwitch();
 
-    btnLogin.classList.add("active");
-    btnRegisto.classList.remove("active");
+    }
 
-    loginForm.classList.remove("hidden");
-    registoForm.classList.add("hidden");
+    bindEvents() {
 
-});
+        const btnEntrar =
+            document.getElementById("btnEntrar");
 
-btnRegisto.addEventListener("click", () => {
+        const btnCriarConta =
+            document.getElementById("btnCriarConta");
 
-    btnRegisto.classList.add("active");
-    btnLogin.classList.remove("active");
+        if (btnEntrar) {
 
-    registoForm.classList.remove("hidden");
-    loginForm.classList.add("hidden");
+            btnEntrar.addEventListener("click", (event) => {
 
-});
+                event.preventDefault();
+
+                window.location.href = "homepage.html";
+
+            });
+
+        }
+
+        if (btnCriarConta) {
+
+            btnCriarConta.addEventListener("click", (event) => {
+
+                event.preventDefault();
+
+                window.location.href = "homepage.html";
+
+            });
+
+        }
+
+    }
+
+    bindSwitch() {
+
+        const btnLogin =
+            document.getElementById("btnLogin");
+
+        const btnRegisto =
+            document.getElementById("btnRegisto");
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+        const registoForm =
+            document.getElementById("registoForm");
+
+        if (
+            !btnLogin ||
+            !btnRegisto ||
+            !loginForm ||
+            !registoForm
+        ) {
+            return;
+        }
+
+        btnLogin.addEventListener("click", () => {
+
+            btnLogin.classList.add("active");
+            btnRegisto.classList.remove("active");
+
+            loginForm.classList.remove("hidden");
+            registoForm.classList.add("hidden");
+
+        });
+
+        btnRegisto.addEventListener("click", () => {
+
+            btnRegisto.classList.add("active");
+            btnLogin.classList.remove("active");
+
+            registoForm.classList.remove("hidden");
+            loginForm.classList.add("hidden");
+
+        });
+
+    }
+
+}

@@ -1,6 +1,6 @@
 import HeaderComponent from "../components/HeaderComponent.js";
 
-export default class LojaView {
+export default class DefinicoesView {
 
     constructor() {
         new HeaderComponent();
