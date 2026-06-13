@@ -85,8 +85,8 @@ main{
 
     background:linear-gradient(
         to right,
-        #8bb2ff 50%,
-        #ffffff 50%
+        #8bb2ff 65%,
+        white 65%
     );
 
     border-radius:10px;
@@ -107,7 +107,7 @@ main{
 }
 
 .menu-btn{
-    width:145px;
+    width:150px;
 
     background:#252737;
 
@@ -127,8 +127,15 @@ main{
     cursor:pointer;
 
     box-shadow:0 4px 8px rgba(0,0,0,0.3);
+
+    white-space:nowrap;
 }
 
 .menu-btn:hover{
     background:#2c3044;
+}
+
+.menu-buttons{
+    display:flex;
+    flex-direction:column;
 }

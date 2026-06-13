@@ -1,9 +1,9 @@
 import HeaderComponent from "../components/HeaderComponent.js";
 
-export default class LojaView {
+export default class MiniJogosView {
 
     constructor() {
         new HeaderComponent();
-
+        
     }
 }
