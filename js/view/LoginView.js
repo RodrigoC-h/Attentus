@@ -1,3 +1,5 @@
+import UserModel from "../model/UserModel.js";
+
 export default class LoginView {
 
     constructor() {
@@ -21,7 +23,43 @@ export default class LoginView {
 
                 event.preventDefault();
 
-                window.location.href = "homepage.html";
+                const usernameOrEmail =
+                    document.getElementById("loginUser").value;
+
+                const password =
+                    document.getElementById("loginPassword").value;
+
+                if (
+                    usernameOrEmail.trim() === "" ||
+                    password.trim() === ""
+                ) {
+
+                    alert(
+                        "Preencha todos os campos."
+                    );
+
+                    return;
+
+                }
+                
+                const success =
+                    UserModel.login(
+                        usernameOrEmail,
+                        password
+                    );
+
+                if (success) {
+
+                    window.location.href =
+                        "homepage.html";
+
+                } else {
+
+                    alert(
+                        "Utilizador ou palavra-passe incorretos."
+                    );
+
+                }
 
             });
 
@@ -33,7 +71,70 @@ export default class LoginView {
 
                 event.preventDefault();
 
-                window.location.href = "homepage.html";
+                const username =
+                    document.getElementById(
+                        "registerUsername"
+                    ).value;
+
+                const email =
+                    document.getElementById(
+                        "registerEmail"
+                    ).value;
+
+                const password =
+                    document.getElementById(
+                        "registerPassword"
+                    ).value;
+
+                const confirmPassword =
+                    document.getElementById(
+                        "registerConfirmPassword"
+                    ).value;
+
+                if (
+                    username.trim() === "" ||
+                    email.trim() === "" ||
+                    password.trim() === "" ||
+                    confirmPassword.trim() === ""
+                ) {
+
+                    alert(
+                        "Preencha todos os campos."
+                    );
+
+                    return;
+
+                }
+
+                if (password !== confirmPassword) {
+
+                    alert(
+                        "As palavras-passe não coincidem."
+                    );
+
+                    return;
+
+                }
+
+                const success =
+                    UserModel.register(
+                        username,
+                        email,
+                        password
+                    );
+
+                if (success) {
+
+                    window.location.href =
+                        "homepage.html";
+
+                } else {
+
+                    alert(
+                        "Já existe uma conta com esse utilizador ou email."
+                    );
+
+                }
 
             });
 

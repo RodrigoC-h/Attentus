@@ -32,6 +32,19 @@ export default class UserModel {
 
         const data = this.getData();
 
+        const userExists =
+            data.users.find(
+                user =>
+                    user.username === username ||
+                    user.email === email
+            );
+
+        if (userExists) {
+
+            return false;
+
+        }
+
         const user = {
 
             id: Date.now(),
@@ -91,10 +104,12 @@ export default class UserModel {
 
         this.saveData(data);
 
+        return true;
+
     }
 
     static login(
-        username,
+        usernameOrEmail,
         password
     ) {
 
@@ -103,7 +118,14 @@ export default class UserModel {
         const user =
             data.users.find(
                 user =>
-                    user.username === username &&
+
+                    (
+                        user.username === usernameOrEmail ||
+                        user.email === usernameOrEmail
+                    )
+
+                    &&
+
                     user.password === password
             );
 
@@ -204,6 +226,12 @@ export default class UserModel {
         user.coins -= coins;
 
         this.saveData(data);
+
+    }
+
+    static isLoggedIn() {
+
+        return this.getCurrentUser() !== undefined;
 
     }
 
