@@ -8,6 +8,7 @@ import IntroView from "./view/IntroView.js";
 import IndexView from "./view/IndexView.js";
 import JogoView from "./view/JogoView.js";
 import DificuldadeView from "./view/DificuldadeView.js";
+import NiveisView from "./view/NiveisView.js";
 
 const pagina = window.location.pathname;
 
@@ -49,4 +50,8 @@ if (pagina.includes("jogo.html")) {
 
 if (pagina.includes("dificuldade.html")) {
     new DificuldadeView();
+}
+
+if (pagina.includes("niveis.html")) {
+    new NiveisView();
 }

@@ -1,12 +1,13 @@
+import HeaderComponent from "../components/HeaderComponent.js";
+
 export default class JogoView {
 
     constructor() {
-        console.log("JogoView carregado");
+
+        new HeaderComponent();
 
         this.gameContainer =
             document.getElementById("gameContainer");
-
-        console.log(this.gameContainer);
 
         const params =
             new URLSearchParams(window.location.search);
@@ -37,6 +38,10 @@ export default class JogoView {
         } else if (this.game === "reacao") {
 
             this.renderReacao();
+
+        } else if (this.game === "foco") {
+
+            this.renderFoco();
 
         }
 
@@ -79,5 +84,15 @@ export default class JogoView {
                 Clica no carro quando a luz ficar verde!
             </h2>
         `;
+    }
+
+    renderFoco() {
+
+        this.gameContainer.innerHTML = `
+            <h2>
+                Jogo do foco
+            </h2>
+        `;
+
     }
 }

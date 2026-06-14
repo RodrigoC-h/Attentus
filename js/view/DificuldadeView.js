@@ -66,11 +66,55 @@ export default class DificuldadeView {
             if (btnDificil) {
 
                 btnDificil.addEventListener("click", () => {
+
                     window.location.href =
                         "jogo.html?game=escape&difficulty=dificil";
 
                 });
+
             }
+
+        }
+
+        if (
+            game === "sequencia" ||
+            game === "organizacao" ||
+            game === "alvo"
+        ) {
+
+            if (btnFacil) {
+
+                btnFacil.addEventListener("click", () => {
+
+                    window.location.href =
+                        `niveis.html?game=${game}&difficulty=facil`;
+
+                });
+
+            }
+
+            if (btnMedio) {
+
+                btnMedio.addEventListener("click", () => {
+
+                    window.location.href =
+                        `niveis.html?game=${game}&difficulty=medio`;
+
+                });
+
+            }
+
+            if (btnDificil) {
+
+                btnDificil.addEventListener("click", () => {
+
+                    window.location.href =
+                        `niveis.html?game=${game}&difficulty=dificil`;
+
+                });
+
+            }
+
         }
     }
 }
