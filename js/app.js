@@ -5,6 +5,7 @@ import PerfilView from "./view/PerfilView.js";
 import LojaView from "./view/LojaView.js";
 import LoginView from "./view/LoginView.js";
 import IntroView from "./view/IntroView.js";
+import IndexView from "./view/IndexView.js";
 
 const pagina = window.location.pathname;
 
@@ -34,4 +35,8 @@ if (pagina.includes("login.html")) {
 
 if (pagina.includes("intro.html")) {
     new IntroView();
+}
+
+if (pagina.includes("index.html")) {
+    new IndexView();
 }
