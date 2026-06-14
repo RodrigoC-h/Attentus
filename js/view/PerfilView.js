@@ -12,7 +12,7 @@ export default class PerfilView {
 
             return;
 
-        }        
+        }
 
         new HeaderComponent();
 
@@ -79,5 +79,5 @@ export default class PerfilView {
         }
 
     }
-
+    
 }

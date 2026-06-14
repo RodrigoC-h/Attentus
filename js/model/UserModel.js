@@ -60,15 +60,17 @@ export default class UserModel {
             coins: 0,
 
             stats: {
+
                 melhorTempoReacao: null,
 
                 objetosEncontrados: 0,
 
-                escapeRoom: {
-                    facil: null,
-                    medio: null,
-                    dificil: null
-                }
+                alvosAcertados: 0,
+
+                sequenciaSemErros: 0,
+
+                sequenciaVitoriasSeguidas: 0
+
             },
 
             achievements: [],
@@ -93,6 +95,16 @@ export default class UserModel {
                     dificil: 0
                 }
 
+            },
+
+            xp: 0,
+
+            gamesPlayed: {
+                reacao: 0,
+                foco: 0,
+                sequencia: 0,
+                organizacao: 0,
+                alvo: 0
             }
 
         };
@@ -235,4 +247,128 @@ export default class UserModel {
 
     }
 
+    static getXp() {
+
+        const user =
+            this.getCurrentUser();
+
+        return user
+            ? user.xp
+            : 0;
+
+    }
+
+    static addXp(xp) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id === data.currentUser
+            );
+
+        if (!user) {
+            return;
+        }
+
+        user.xp += xp;
+
+        this.saveData(data);
+
+    }
+
+    static getLevel() {
+
+        const xp =
+            this.getXp();
+
+        return Math.floor(xp / 100) + 1;
+
+    }
+    
+    static getBestReactionTime() {
+
+        const user =
+            this.getCurrentUser();
+
+        return user
+            ? user.stats.melhorTempoReacao
+            : null;
+
+    }
+
+    static updateBestReactionTime(time) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id === data.currentUser
+            );
+
+        if (!user) {
+            return;
+        }
+
+        if (
+
+            user.stats.melhorTempoReacao === null ||
+
+            time <
+            user.stats.melhorTempoReacao
+
+        ) {
+
+            user.stats.melhorTempoReacao =
+                time;
+
+            this.saveData(data);
+
+        }
+
+    }
+
+    static hasAchievement(id) {
+
+        const user =
+            this.getCurrentUser();
+
+        return user
+            ? user.achievements.includes(id)
+            : false;
+
+    }
+
+    static unlockAchievement(id) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id === data.currentUser
+            );
+
+        if (!user) {
+            return;
+        }
+
+        if (
+
+            !user.achievements.includes(id)
+
+        ) {
+
+            user.achievements.push(id);
+
+            this.saveData(data);
+
+        }
+
+    }
 }

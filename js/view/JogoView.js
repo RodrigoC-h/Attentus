@@ -37,11 +37,7 @@ export default class JogoView {
 
     loadGame() {
 
-        if (this.game === "escape") {
-
-            this.renderEscape();
-
-        } else if (this.game === "sequencia") {
+        if (this.game === "sequencia") {
 
             this.renderSequencia();
 
@@ -54,22 +50,6 @@ export default class JogoView {
             this.renderFoco();
 
         }
-
-    }
-
-    renderEscape() {
-
-        console.log(this.game);
-        console.log(this.difficulty);
-
-        this.gameContainer.innerHTML = `
-            <h2>Escape Room</h2>
-
-            <p>
-                Dificuldade:
-                ${this.difficulty}
-            </p>
-        `;
 
     }
 
@@ -90,10 +70,136 @@ export default class JogoView {
     renderReacao() {
 
         this.gameContainer.innerHTML = `
+
             <h2>
                 Clica no carro quando a luz ficar verde!
             </h2>
+
+            <div class="reaction-track">
+
+                <img
+                    id="semaforo"
+                    src="../assets/images/jogos/semaforo_vermelho.png"
+                    alt="Semáforo"
+                >
+
+                <img
+                    id="meta"
+                    src="../assets/images/jogos/meta.png"
+                    alt="Meta"
+                >
+
+                <img
+                    id="carro"
+                    src="../assets/images/jogos/carro.png"
+                    alt="Carro"
+                >
+
+            </div>
+
+            <div id="reactionModal" class="hidden">
+
+                <div class="modal-content">
+
+                    <div id="tempoFinal">
+                        0 ms
+                    </div>
+
+                    <button id="btnContinuar">
+                        Continuar
+                    </button>
+
+                </div>
+
+            </div>
+
         `;
+
+        this.startReactionGame();
+
+    }
+
+    startReactionGame() {
+
+        const semaforo =
+            document.getElementById("semaforo");
+
+        const carro =
+            document.getElementById("carro");
+
+        const meta =
+            document.getElementById("meta");
+
+        const modal =
+            document.getElementById("reactionModal");
+
+        const tempoFinal =
+            document.getElementById("tempoFinal");
+
+        const btnContinuar =
+            document.getElementById("btnContinuar");
+
+        btnContinuar.addEventListener("click", () => {
+
+            window.location.href =
+                "mini-jogos.html";
+
+        });
+
+        let startTime = 0;
+            const yellowTime =
+                Math.floor(
+                    Math.random() * 2000
+                ) + 1000;
+
+        setTimeout(() => {
+
+            semaforo.src =
+                "../assets/images/jogos/semaforo_amarelo.png";
+
+            setTimeout(() => {
+
+                semaforo.src =
+                    "../assets/images/jogos/semaforo_verde.png";
+
+                startTime =
+                    performance.now();
+
+                carro.addEventListener(
+                    "click",
+                    () => {
+
+                        const reactionTime =
+                            Math.round(
+                                performance.now() -
+                                startTime
+                            );
+
+                        tempoFinal.textContent =
+                            `${reactionTime} ms`;
+
+                        carro.classList.add(
+                            "carro-finish"
+                        );
+
+                        setTimeout(() => {
+
+                            modal.classList.remove(
+                                "hidden"
+                            );
+
+                        }, 1000);
+
+                    },
+
+                    { once: true }
+
+                );
+
+            }, yellowTime);
+
+        }, 2000);
+
     }
 
     renderFoco() {
