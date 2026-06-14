@@ -1,0 +1,76 @@
+import HeaderComponent from "../components/HeaderComponent.js";
+
+export default class DificuldadeView {
+
+    constructor() {
+
+        new HeaderComponent();
+
+        this.bindEvents();
+
+    }
+
+    bindEvents() {
+
+        const game =
+            new URLSearchParams(window.location.search)
+                .get("game");
+
+        const btnFacil =
+            document.getElementById("btnFacil");
+
+        const btnMedio =
+            document.getElementById("btnMedio");
+
+        const btnDificil =
+            document.getElementById("btnDificil");
+
+        const btnVoltar =
+            document.getElementById("btnVoltar");
+
+        if (btnVoltar) {
+
+            btnVoltar.addEventListener("click", () => {
+
+                window.location.href =
+                    "mini-jogos.html";
+
+            });
+
+        }
+
+        if (game === "escape") {
+
+            if (btnFacil) {
+
+                btnFacil.addEventListener("click", () => {
+
+                    window.location.href =
+                        "jogo.html?game=escape&difficulty=facil";
+
+                });
+
+            }
+
+            if (btnMedio) {
+
+                btnMedio.addEventListener("click", () => {
+
+                    window.location.href =
+                        "jogo.html?game=escape&difficulty=medio";
+
+                });
+
+            }
+
+            if (btnDificil) {
+
+                btnDificil.addEventListener("click", () => {
+                    window.location.href =
+                        "jogo.html?game=escape&difficulty=dificil";
+
+                });
+            }
+        }
+    }
+}
