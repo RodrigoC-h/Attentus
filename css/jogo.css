@@ -143,3 +143,104 @@ h1{
 .cyan{
     background:#1294b9;
 }
+
+
+.reaction-track {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 250px;
+
+    overflow: hidden;
+
+}
+
+#semaforo {
+
+    position: absolute;
+
+    top: 120px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 40px;
+
+}
+
+#meta {
+
+    position: absolute;
+
+    right: 10px;
+
+    bottom: 10px;
+
+    width: 130px;
+
+}
+
+#carro {
+
+    position: absolute;
+
+    left: 20px;
+
+    bottom: 20px;
+
+    width: 130px;
+
+    cursor: pointer;
+
+    transition: left 1s linear;
+
+}
+
+#carro.carro-finish {
+
+    left: calc(100% - 180px);
+
+}
+
+.hidden {
+    display: none;
+}
+
+#reactionModal {
+
+    position: fixed;
+    inset: 0;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,0.6);
+
+}
+
+#reactionModal.hidden {
+
+    display: none;
+
+}
+
+#reactionModal:not(.hidden) {
+
+    display: flex;
+
+}
+
+.modal-content {
+
+    background: #22253a;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+}
