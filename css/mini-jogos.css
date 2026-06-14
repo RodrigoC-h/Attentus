@@ -182,28 +182,6 @@ main{
     width:100%;
 }
 
-/* escape */
-
-.escape{
-    background:#02173c;
-    border:2px solid #d8c071;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-
-    padding:12px;
-}
-
-.escape h3{
-    margin-bottom:10px;
-}
-
-.escape-icons{
-    font-size:2rem;
-}
-
 /* alvo */
 
 .target{

@@ -64,11 +64,6 @@ export default class UserModel {
 
                 objetosEncontrados: 0,
 
-                escapeRoom: {
-                    facil: null,
-                    medio: null,
-                    dificil: null
-                }
             },
 
             achievements: [],

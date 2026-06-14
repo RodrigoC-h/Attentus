@@ -37,11 +37,7 @@ export default class JogoView {
 
     loadGame() {
 
-        if (this.game === "escape") {
-
-            this.renderEscape();
-
-        } else if (this.game === "sequencia") {
+        if (this.game === "sequencia") {
 
             this.renderSequencia();
 
@@ -54,22 +50,6 @@ export default class JogoView {
             this.renderFoco();
 
         }
-
-    }
-
-    renderEscape() {
-
-        console.log(this.game);
-        console.log(this.difficulty);
-
-        this.gameContainer.innerHTML = `
-            <h2>Escape Room</h2>
-
-            <p>
-                Dificuldade:
-                ${this.difficulty}
-            </p>
-        `;
 
     }
 
