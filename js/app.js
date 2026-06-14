@@ -1,3 +1,6 @@
+import StorageManager
+from "./managers/StorageManager.js";
+
 import HomepageView from "./view/HomepageView.js";
 import MiniJogosView from "./view/MiniJogosView.js";
 import DefinicoesView from "./view/DefinicoesView.js";
@@ -9,6 +12,8 @@ import IndexView from "./view/IndexView.js";
 import JogoView from "./view/JogoView.js";
 import DificuldadeView from "./view/DificuldadeView.js";
 import NiveisView from "./view/NiveisView.js";
+
+StorageManager.initialize();
 
 const pagina = window.location.pathname;
 
