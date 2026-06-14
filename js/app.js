@@ -6,6 +6,9 @@ import LojaView from "./view/LojaView.js";
 import LoginView from "./view/LoginView.js";
 import IntroView from "./view/IntroView.js";
 import IndexView from "./view/IndexView.js";
+import JogoView from "./view/JogoView.js";
+import DificuldadeView from "./view/DificuldadeView.js";
+import NiveisView from "./view/NiveisView.js";
 
 const pagina = window.location.pathname;
 
@@ -39,4 +42,16 @@ if (pagina.includes("intro.html")) {
 
 if (pagina.includes("index.html")) {
     new IndexView();
+}
+
+if (pagina.includes("jogo.html")) {
+    new JogoView();
+}
+
+if (pagina.includes("dificuldade.html")) {
+    new DificuldadeView();
+}
+
+if (pagina.includes("niveis.html")) {
+    new NiveisView();
 }
