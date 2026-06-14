@@ -1,9 +1,12 @@
 export default class JogoView {
 
     constructor() {
+        console.log("JogoView carregado");
 
         this.gameContainer =
             document.getElementById("gameContainer");
+
+        console.log(this.gameContainer);
 
         const params =
             new URLSearchParams(window.location.search);
@@ -40,6 +43,9 @@ export default class JogoView {
     }
 
     renderEscape() {
+
+        console.log(this.game);
+        console.log(this.difficulty);
 
         this.gameContainer.innerHTML = `
             <h2>Escape Room</h2>
