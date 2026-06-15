@@ -138,3 +138,19 @@ main{
 .level:hover{
     background:#2c3550;
 }
+
+.level.completed {
+
+    background: #B2D0FF;
+
+    color: black;
+
+}
+
+.level.locked {
+
+    opacity: 0.4;
+
+    cursor: not-allowed;
+
+}

@@ -97,6 +97,14 @@ export default class UserModel {
 
             },
 
+            completedLevels: {
+
+                sequencia: [],
+                organizacao: [],
+                alvo: []
+
+            },
+
             xp: 0,
 
             gamesPlayed: {
@@ -343,6 +351,207 @@ export default class UserModel {
 
     }
 
+    static hasCompletedLevel(
+        game,
+        difficulty,
+        level
+    ) {
+
+        const user =
+            this.getCurrentUser();
+
+        if (
+            !user ||
+            !user.completedLevels
+        ) {
+
+            return false;
+
+        }
+
+        return user.completedLevels[game]
+            .includes(
+                `${difficulty}-${level}`
+            );
+
+    }
+
+    static completeLevel(
+        game,
+        difficulty,
+        level
+    ) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id ===
+                    data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        if (!user.completedLevels) {
+
+            user.completedLevels = {
+
+                sequencia: [],
+                organizacao: [],
+                alvo: []
+
+            };
+
+        }
+
+        const levelId =
+            `${difficulty}-${level}`;
+
+        if (
+
+            !user.completedLevels[game]
+                .includes(levelId)
+
+        ) {
+
+            user.completedLevels[game]
+                .push(levelId);
+
+            this.saveData(data);
+
+        }
+
+    }
+
+    static hasCompletedDifficulty(
+        game,
+        difficulty
+    ) {
+
+        const user =
+            this.getCurrentUser();
+
+        if (!user) {
+
+            return false;
+
+        }
+
+        for (
+
+            let level = 0;
+
+            level <= 20;
+
+            level++
+
+        ) {
+
+            const levelId =
+                `${difficulty}-${level}`;
+
+            if (
+
+                !user.completedLevels[game]
+                    .includes(levelId)
+
+            ) {
+
+                return false;
+
+            }
+
+        }
+
+        return true;
+
+    }
+
+    static getCompletedLevels(
+        game
+    ) {
+
+        const user =
+            this.getCurrentUser();
+
+        if (
+            !user ||
+            !user.completedLevels
+        ) {
+
+            return [];
+
+        }
+
+        return user.completedLevels[
+            game
+        ];
+
+    }
+
+    static addSequenceWin() {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id === data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        user.stats.sequenciaVitoriasSeguidas++;
+
+        this.saveData(data);
+
+    }
+
+    static resetSequenceWinStreak() {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id === data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        user.stats.sequenciaVitoriasSeguidas = 0;
+
+        this.saveData(data);
+
+    }
+
+    static getSequenceWinStreak() {
+
+        const user =
+            this.getCurrentUser();
+
+        return user
+            ? user.stats.sequenciaVitoriasSeguidas
+            : 0;
+
+    }
+
     static unlockAchievement(id) {
 
         const data =
@@ -371,4 +580,32 @@ export default class UserModel {
         }
 
     }
+
+    static isLevelUnlocked(
+        game,
+        difficulty,
+        level
+    ) {
+
+        level =
+            Number(level);
+
+        if (level === 0) {
+
+            return true;
+
+        }
+
+        return this.hasCompletedLevel(
+
+            game,
+
+            difficulty,
+
+            level - 1
+
+        );
+
+    }
+
 }
