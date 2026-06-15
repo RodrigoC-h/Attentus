@@ -56,14 +56,79 @@ export default class JogoView {
     renderSequencia() {
 
         this.gameContainer.innerHTML = `
-            <div class="nivel">
-                Nível ${this.level}
+
+            <div class="nivel-badge">
+                Nível ${this.level || 1}
             </div>
 
-            <h2>
-                Repete a sequência!
-            </h2>
+            <div class="game-board">
+
+                <button class="color red"></button>
+                <button class="color yellow"></button>
+                <button class="color green"></button>
+
+                <button class="color blue"></button>
+                <button class="color orange"></button>
+                <button class="color purple"></button>
+
+                <button class="color white"></button>
+                <button class="color pink"></button>
+                <button class="color cyan"></button>
+
+            </div>
+
         `;
+
+        this.sequence = [
+            "red",
+            "blue",
+            "yellow"
+        ];
+
+        this.playerSequence = [];
+
+        this.showSequence();
+    }
+
+    showSequence() {
+
+        let index = 0;
+
+        const interval = setInterval(() => {
+
+            const color =
+                document.querySelector(
+                    `.${this.sequence[index]}`
+                );
+
+            color.classList.add(
+                "active"
+            );
+
+            setTimeout(() => {
+
+                color.classList.remove(
+                    "active"
+                );
+
+            }, 500);
+
+            index++;
+
+            if (
+                index >=
+                this.sequence.length
+            ) {
+
+                clearInterval(
+                    interval
+                );
+
+                this.enableClicks();
+
+            }
+
+        }, 800);
 
     }
 

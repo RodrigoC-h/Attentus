@@ -244,3 +244,29 @@ h1{
     text-align: center;
 
 }
+
+
+
+.color {
+
+    border: none;
+
+    aspect-ratio: 1;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+.color.active {
+
+    transform: scale(1.08);
+
+    filter: brightness(1.8);
+
+    box-shadow: 0 0 20px white;
+
+}
