@@ -150,7 +150,9 @@ main{
 }
 
 .xp-fill{
-    width:74%;
+    
+    width:0%;
+
     height:100%;
 
     background:#a9c4ff;
