@@ -18,6 +18,77 @@ export default class NiveisView {
 
         this.bindEvents();
 
+        this.loadProgress();
+
+    }
+
+    loadProgress() {
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const game =
+            params.get("game");
+
+        const difficulty =
+            params.get("difficulty");
+
+        const levels =
+            document.querySelectorAll(
+                ".level"
+            );
+
+        levels.forEach((level) => {
+
+            const levelNumber =
+                level.dataset.level;
+
+            if (
+
+                UserModel.hasCompletedLevel(
+
+                    game,
+
+                    difficulty,
+
+                    levelNumber
+
+                )
+
+            ) {
+
+                level.classList.add(
+                    "completed"
+                );
+
+            }
+
+            if (
+
+                !UserModel.isLevelUnlocked(
+
+                    game,
+
+                    difficulty,
+
+                    levelNumber
+
+                )
+
+            ) {
+
+                level.disabled = true;
+
+                level.classList.add(
+                    "locked"
+                );
+
+            }
+
+        });
+
     }
 
     bindEvents() {
@@ -33,7 +104,7 @@ export default class NiveisView {
 
         const niveis =
             document.querySelectorAll(".level");
-        console.log("Níveis encontrados:", niveis.length);
+        
         const btnVoltar =
             document.getElementById("btnVoltar");
 
@@ -60,6 +131,24 @@ export default class NiveisView {
 
                 const numero =
                     nivel.dataset.level;
+
+                if (
+
+                    !UserModel.isLevelUnlocked(
+
+                        game,
+
+                        difficulty,
+
+                        numero
+
+                    )
+
+                ) {
+
+                    return;
+
+                }
 
                 window.location.href =
                     `jogo.html?game=${game}&difficulty=${difficulty}&level=${numero}`;

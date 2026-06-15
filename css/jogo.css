@@ -270,3 +270,54 @@ h1{
     box-shadow: 0 0 20px white;
 
 }
+
+#winModal,
+#loseModal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(
+        0,
+        0,
+        0,
+        0.7
+    );
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+#winModal.hidden,
+#loseModal.hidden {
+
+    display: none;
+
+}
+
+.modal-content {
+
+    background: #22253a;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+}
+
+.modal-content button {
+
+    display: block;
+
+    width: 180px;
+
+    margin: 10px auto;
+
+}
