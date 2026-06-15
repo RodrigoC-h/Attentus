@@ -57,6 +57,30 @@ export default class UserModel {
 
             avatar: "defaultAvatar",
 
+            ownedItems: [
+
+                "avatar_azul"
+
+            ],
+
+            equippedItems: {
+
+                hat: null,
+
+                glasses: null,
+
+                accessory: null
+
+            },
+
+            equippedAchievements: [
+
+                null,
+                null,
+                null
+
+            ],
+
             coins: 0,
 
             stats: {
@@ -292,7 +316,10 @@ export default class UserModel {
         const xp =
             this.getXp();
 
-        return Math.floor(xp / 100) + 1;
+        return Math.min(
+            Math.floor(xp / 100) + 1,
+            20
+        );
 
     }
     
@@ -608,4 +635,163 @@ export default class UserModel {
 
     }
 
+    static hasItem(itemId) {
+
+        const user =
+            this.getCurrentUser();
+
+        if (!user) {
+
+            return false;
+
+        }
+
+        return user.ownedItems.includes(
+            itemId
+        );
+
+    }
+
+
+    static unlockItem(itemId) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id ===
+                    data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        if (
+
+            !user.ownedItems.includes(
+                itemId
+            )
+
+        ) {
+
+            user.ownedItems.push(
+                itemId
+            );
+
+            this.saveData(data);
+
+        }
+
+    }
+
+    static equipItem(
+        category,
+        itemId
+    ) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id ===
+                    data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        user.equippedItems[
+            category
+        ] = itemId;
+
+        this.saveData(data);
+
+    }
+
+    static getEquippedItem(
+        category
+    ) {
+
+        const user =
+            this.getCurrentUser();
+
+        if (!user) {
+
+            return null;
+
+        }
+
+        return user.equippedItems[
+            category
+        ];
+
+    }
+
+    static ensureInventory() {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id ===
+                    data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        if (!user.ownedItems) {
+
+            user.ownedItems = [
+
+                "avatar_azul"
+
+            ];
+
+        }
+
+        if (!user.equippedItems) {
+
+            user.equippedItems = {
+
+                hat: "bone_roxo",
+
+                glasses: null,
+
+                accessory: null
+
+            };
+
+        }
+
+        if (!user.equippedAchievements) {
+
+            user.equippedAchievements = [
+
+                null,
+                null,
+                null
+
+            ];
+
+        }
+
+        this.saveData(data);
+
+    }
 }

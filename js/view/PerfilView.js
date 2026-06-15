@@ -14,6 +14,8 @@ export default class PerfilView {
 
         }
 
+        UserModel.ensureInventory();
+
         new HeaderComponent();
 
         this.loadUserData();
@@ -25,10 +27,29 @@ export default class PerfilView {
     loadUserData() {
 
         const username =
-            document.getElementById("username");
+            document.getElementById(
+                "username"
+            );
 
         const saldo =
-            document.getElementById("saldo");
+            document.getElementById(
+                "saldo"
+            );
+
+        const level =
+            document.getElementById(
+                "level"
+            );
+
+        const xpText =
+            document.getElementById(
+                "xpText"
+            );
+
+        const xpFill =
+            document.getElementById(
+                "xpFill"
+            );
 
         if (username) {
 
@@ -41,6 +62,39 @@ export default class PerfilView {
 
             saldo.textContent =
                 `${UserModel.getCoins()} 🪙`;
+
+        }
+
+        const xp =
+            UserModel.getXp();
+
+        const currentLevel =
+            UserModel.getLevel();
+
+        const xpNeeded =
+            currentLevel * 100;
+
+        if (level) {
+
+            level.textContent =
+                currentLevel;
+
+        }
+
+        if (xpText) {
+
+            xpText.textContent =
+                `${xp} / ${xpNeeded}`;
+
+        }
+
+        if (xpFill) {
+
+            xpFill.style.width =
+                `${Math.min(
+                    (xp / xpNeeded) * 100,
+                    100
+                )}%`;
 
         }
 
