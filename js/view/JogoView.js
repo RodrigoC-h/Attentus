@@ -127,9 +127,6 @@ export default class JogoView {
         const carro =
             document.getElementById("carro");
 
-        const meta =
-            document.getElementById("meta");
-
         const modal =
             document.getElementById("reactionModal");
 
@@ -147,10 +144,82 @@ export default class JogoView {
         });
 
         let startTime = 0;
-            const yellowTime =
-                Math.floor(
-                    Math.random() * 2000
-                ) + 1000;
+
+        let canClick = false;
+
+        const yellowTime =
+            Math.floor(
+                Math.random() * 2000
+            ) + 1000;
+
+        carro.addEventListener(
+            "click",
+            () => {
+
+                if (!canClick) {
+
+                    alert(
+                        "Falso arranque!"
+                    );
+
+                    window.location.reload();
+
+                    return;
+
+                }
+
+                canClick = false;
+
+                const reactionTime =
+                    Math.round(
+                        performance.now() -
+                        startTime
+                    );
+
+                UserModel.updateBestReactionTime(
+                    reactionTime
+                );
+
+                if (
+
+                    reactionTime < 300 &&
+
+                    !UserModel.hasAchievement(
+                        "reflexos_aco"
+                    )
+
+                ) {
+
+                    UserModel.unlockAchievement(
+                        "reflexos_aco"
+                    );
+
+                    UserModel.addCoins(5);
+
+                    UserModel.addXp(50);
+
+                }
+
+                tempoFinal.textContent =
+                    `${reactionTime} ms`;
+
+                carro.classList.add(
+                    "carro-finish"
+                );
+
+                setTimeout(() => {
+
+                    modal.classList.remove(
+                        "hidden"
+                    );
+
+                }, 1000);
+
+            },
+
+            { once: true }
+
+        );
 
         setTimeout(() => {
 
@@ -162,39 +231,10 @@ export default class JogoView {
                 semaforo.src =
                     "../assets/images/jogos/semaforo_verde.png";
 
+                canClick = true;
+
                 startTime =
                     performance.now();
-
-                carro.addEventListener(
-                    "click",
-                    () => {
-
-                        const reactionTime =
-                            Math.round(
-                                performance.now() -
-                                startTime
-                            );
-
-                        tempoFinal.textContent =
-                            `${reactionTime} ms`;
-
-                        carro.classList.add(
-                            "carro-finish"
-                        );
-
-                        setTimeout(() => {
-
-                            modal.classList.remove(
-                                "hidden"
-                            );
-
-                        }, 1000);
-
-                    },
-
-                    { once: true }
-
-                );
 
             }, yellowTime);
 
