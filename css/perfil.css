@@ -51,20 +51,54 @@ main{
     align-items:center;
 }
 
-.avatar-container{
-    width:110px;
-    height:110px;
+.avatar-container {
 
-    background:white;
-    border-radius:50%;
+    position: relative;
 
-    overflow:hidden;
+    width: 120px;
+
+    height: 120px;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+}
+
+.avatar-layer {
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    left: 0;
+    top: 0;
+
+}
+
+.equip-circle img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: none;
+
 }
 
 .avatar-container img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+    width:65%;
+    height:65%;
+    
+    left: 17%;
+    top:35%;
+
+    object-fit: contain;
 }
 
 .edit-btn{
@@ -267,4 +301,185 @@ main{
     cursor:pointer;
 
     box-shadow:0 4px 8px rgba(0,0,0,.3);
+}
+
+#avatarBase {
+
+    z-index: 1;
+
+}
+
+#avatarFace {
+
+    z-index: 2;
+
+}
+
+#avatarHat {
+
+    z-index: 3;
+
+}
+
+.bone {
+
+    transform:
+        scaleX(0.8)
+        scaleY(0.75)
+        translateY(-65px);
+
+}
+
+.auriculares {
+
+    transform:
+        scaleX(1.75)
+        scaleY(1.55)
+        translateY(-13px)
+        translateX(-0.5px);
+
+}
+
+.cartola {
+
+    transform:
+        scaleX(1)
+        scaleY(0.87)
+        translateY(-62px)
+        translateX(-0.5px);
+
+}
+
+.coroa {
+
+    transform:
+        scaleX(1)
+        scaleY(0.90)
+        translateY(-66px);
+
+}
+
+.chapeu {
+
+    transform:
+        scaleX(1)
+        scaleY(0.95)
+        translateY(-57px);
+
+}
+
+.laco {
+
+    transform:
+        scale(0.45)
+        translateY(-93px)
+        translateX(66px)
+
+        rotate(30deg);
+    
+}
+
+.halo {
+
+    transform:
+        scale(0.9)
+        translateY(-55px);
+
+}
+
+.nuvens {
+
+    transform:
+        scale(1.1)
+        translateY(-55px);
+
+}
+
+.mini_atti {
+
+    transform:
+        scale(0.75)
+        translateY(-65px)
+        translateX(46px);
+
+}
+
+.oculos {
+
+    transform:
+        scale(1.1)
+        translateY(-25px)
+        translateX(-0.3px);
+
+}
+
+.monoculo {
+
+    transform:
+        scale(0.7)
+        translateY(-27px)
+        translateX(16px);
+
+}
+
+.mascara {
+
+    transform:
+        scale(1.8)
+        translateY(9px)
+        translateX(0.3px);
+
+}
+
+.hacker {
+
+    transform:
+        scaleX(2.2)
+        scaleY(2.1)
+        translateY(0px);
+
+}
+
+.pala {
+
+    transform:
+        scale(0.81)
+        rotate(-30deg)
+        translateY(-25px)
+        translateX(16px);
+
+}
+
+.laco_formal {
+
+    transform:
+        scale(1.2)
+        translateY(27px)
+        translateX(-0.3px);
+
+}
+
+.mascara_gas {
+
+    transform:
+        scaleX(1.3)
+        scaleY(1.35)
+        translateY(-2px);
+
+}
+
+.fita {
+
+    transform:
+        scaleX(1.3)
+        scaleY(1.5)
+        translateY(10px)
+        translateX(-0.3px);
+
+}
+
+.equip-circle {
+
+    overflow: hidden;
+
 }

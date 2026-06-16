@@ -29,7 +29,11 @@
 
             <div class="avatar-area">
                 <div class="avatar-circle">
-                    <img src="../assets/imagens/avatar.png" alt="Avatar">
+                    <img
+                        id="previewAvatar"
+                        src="../assets/images/avatar/avatar_azul.png"
+                        alt="Avatar"
+                    >
                 </div>
             </div>
 
@@ -37,19 +41,19 @@
 
             <div class="tabs">
 
-                <button class="tab active">
+                <button id="tabHead" class="tab active">
                     🎩
                 </button>
 
-                <button class="tab">
+                <button id="tabFace" class="tab">
                     🕶️
                 </button>
 
-                <button class="tab">
+                <button id="tabColor" class="tab">
                     🎨
                 </button>
 
-                <button class="tab">
+                <button id="tabAchievement" class="tab">
                     🏆
                 </button>
 
@@ -57,81 +61,10 @@
 
             <!-- Itens -->
 
-            <div class="items-grid">
-
-                <div class="item-card">
-                    <img src="../assets/imagens/boné.png" alt="Boné">
-
-                    <button class="equipado-btn">
-                        Equipado
-                    </button>
-                </div>
-
-                <div class="item-card">
-                    <img src="../assets/imagens/headphones.png" alt="Headphones">
-
-                    <button class="comprar-btn">
-                        10 🪙
-                    </button>
-                </div>
-
-                <div class="item-card">
-                    <img src="../assets/imagens/cartola.png" alt="Cartola">
-
-                    <button class="comprar-btn">
-                        10 🪙
-                    </button>
-                </div>
-
-                <div class="item-card">
-                    <img src="../assets/imagens/coroa.png" alt="Coroa">
-
-                    <button class="comprar-btn">
-                        10 🪙
-                    </button>
-                </div>
-
-                <div class="item-card">
-                    <img src="../assets/imagens/chapeu.png" alt="Chapéu">
-
-                    <button class="comprar-btn">
-                        10 🪙
-                    </button>
-                </div>
-
-                <div class="item-card">
-                    <img src="../assets/imagens/laco.png" alt="Laço">
-
-                    <button class="comprar-btn">
-                        10 🪙
-                    </button>
-                </div>
-
-                <div class="item-card">
-                    <img src="../assets/imagens/halo.png" alt="Halo">
-
-                    <button class="comprar-btn">
-                        10 🪙
-                    </button>
-                </div>
-
-                <div class="item-card">
-                    <img src="../assets/imagens/nuvem.png" alt="Nuvem">
-
-                    <button class="comprar-btn">
-                        10 🪙
-                    </button>
-                </div>
-
-                <div class="item-card">
-                    <img src="../assets/imagens/atti-icon.png" alt="Atti">
-
-                    <button class="comprar-btn">
-                      10 🪙
-                    </button>
-                </div>
-
-            </div>
+            <div
+                id="itemsContainer"
+                class="items-grid"
+            ></div>
 
         </section>
 

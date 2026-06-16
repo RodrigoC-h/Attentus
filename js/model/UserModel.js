@@ -55,7 +55,7 @@ export default class UserModel {
 
             password,
 
-            avatar: "defaultAvatar",
+            avatar: "avatar_azul",
 
             ownedItems: [
 
@@ -93,7 +93,9 @@ export default class UserModel {
 
                 sequenciaSemErros: 0,
 
-                sequenciaVitoriasSeguidas: 0
+                sequenciaVitoriasSeguidas: 0,
+
+                totalMoedasObtidas: 0
 
             },
 
@@ -248,8 +250,10 @@ export default class UserModel {
 
         user.coins += coins;
 
-        this.saveData(data);
+        user.stats.totalMoedasObtidas +=
+            coins;
 
+        this.saveData(data);
     }
 
     static removeCoins(coins) {
@@ -769,7 +773,7 @@ export default class UserModel {
 
             user.equippedItems = {
 
-                hat: "bone_roxo",
+                hat: null,
 
                 glasses: null,
 
@@ -788,6 +792,223 @@ export default class UserModel {
                 null
 
             ];
+
+        }
+
+        this.saveData(data);
+
+    }
+
+    static getOwnedItems() {
+
+        const user =
+            this.getCurrentUser();
+
+        return user
+            ? user.ownedItems
+            : [];
+
+    }
+
+    static getAvatar() {
+
+        const user =
+            this.getCurrentUser();
+
+        return user
+            ? user.avatar
+            : "avatar_azul";
+
+    }
+
+    static setAvatar(
+        avatarId
+    ) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id ===
+                    data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        user.avatar =
+            avatarId;
+
+        this.saveData(data);
+
+    }
+
+    static getEquippedHat() {
+
+        return this.getEquippedItem(
+            "hat"
+        );
+
+    }
+
+    static getTotalCoinsEarned() {
+
+        const user =
+            this.getCurrentUser();
+
+        return user
+            ? user.stats.totalMoedasObtidas
+            : 0;
+
+    }
+
+    static getEquippedAchievements() {
+
+        const user =
+            this.getCurrentUser();
+
+        return user
+            ? user.equippedAchievements
+            : [];
+
+    }
+
+    static equipAchievement(id) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id ===
+                    data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        const index =
+
+            user.equippedAchievements.findIndex(
+                slot =>
+                    slot === null
+            );
+
+        if (index !== -1) {
+
+            user.equippedAchievements[index] =
+                id;
+
+        }
+
+        this.saveData(data);
+
+    }
+
+    static toggleAchievement(id) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id ===
+                    data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        const equippedIndex =
+
+            user.equippedAchievements.indexOf(
+                id
+            );
+
+        if (equippedIndex !== -1) {
+
+            user.equippedAchievements[
+                equippedIndex
+            ] = null;
+
+        }
+
+        else {
+
+            const freeSlot =
+
+                user.equippedAchievements.findIndex(
+                    slot =>
+                        slot === null
+                );
+
+            if (freeSlot !== -1) {
+
+                user.equippedAchievements[
+                    freeSlot
+                ] = id;
+
+            }
+
+        }
+
+        this.saveData(data);
+
+    }
+
+    static toggleItem(
+        category,
+        itemId
+    ) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id ===
+                    data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        if (
+
+            user.equippedItems[
+                category
+            ] === itemId
+
+        ) {
+
+            user.equippedItems[
+                category
+            ] = null;
+
+        }
+
+        else {
+
+            user.equippedItems[
+                category
+            ] = itemId;
 
         }
 

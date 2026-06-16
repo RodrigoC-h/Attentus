@@ -24,7 +24,22 @@
             <div class="left-column">
 
                 <div class="avatar-container">
-                    <img src="../assets/images/avatar.png" alt="Avatar">
+
+                    <img
+                        id="avatarBase"
+                        class="avatar-layer"
+                    >
+
+                    <img
+                        id="avatarFace"
+                        class="avatar-layer"
+                    >
+
+                    <img
+                        id="avatarHat"
+                        class="avatar-layer"
+                    >
+
                 </div>
 
                 <button id="btnEditar" class="edit-btn">
@@ -44,12 +59,16 @@
                     <div class="equipped">
 
                         <div class="equip-circle">
-                            🏆
+                            <img id="achievement1" style="display:none;">
                         </div>
 
-                        <div class="equip-circle"></div>
+                        <div class="equip-circle">
+                            <img id="achievement2" style="display:none;">
+                        </div>
 
-                        <div class="equip-circle"></div>
+                        <div class="equip-circle">
+                            <img id="achievement3" style="display:none;">
+                        </div>
 
                     </div>
 
