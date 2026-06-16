@@ -51,20 +51,23 @@ export default class PerfilView {
                 "xpFill"
             );
 
-        const avatar =
+        const avatarBase =
             document.getElementById(
-                "avatar"
+                "avatarBase"
+            );
+
+        const avatarFace =
+            document.getElementById(
+                "avatarFace"
+            );
+
+        const avatarHat =
+            document.getElementById(
+                "avatarHat"
             );
 
         const equippedAchievements =
             UserModel.getEquippedAchievements();
-
-        if (avatar) {
-
-            avatar.src =
-                `../assets/images/avatars/${UserModel.getAvatar()}.png`;
-
-        }
 
         if (username) {
 
@@ -113,6 +116,68 @@ export default class PerfilView {
 
         }
 
+        if (avatarBase) {
+
+            avatarBase.src =
+
+                `../assets/images/avatar/${UserModel.getAvatar()}.png`;
+
+        }
+
+        const faceItem =
+
+            UserModel.getEquippedItem(
+                "glasses"
+            );
+
+        if (
+
+            avatarFace
+
+            &&
+
+            faceItem
+
+        ) {
+
+            avatarFace.src =
+                `../assets/images/avatar/${faceItem}.png`;
+
+                avatarFace.style.display =
+                    "block";
+
+            avatarFace.className =
+                `avatar-layer ${faceItem}`;
+
+        }
+
+        const hatItem =
+
+            UserModel.getEquippedItem(
+                "hat"
+            );
+
+        if (
+
+            avatarHat
+
+            &&
+
+            hatItem
+
+        ) {
+
+            avatarHat.src =
+                `../assets/images/avatar/${hatItem}.png`;
+
+                avatarHat.style.display =
+                    "block";
+
+            avatarHat.className =
+                `avatar-layer ${hatItem}`;
+
+        }
+
         for (
 
             let i = 0;
@@ -129,7 +194,6 @@ export default class PerfilView {
                 );
 
             const achievement =
-
                 equippedAchievements[i];
 
             if (
@@ -143,10 +207,33 @@ export default class PerfilView {
             ) {
 
                 img.src =
-
                     `../assets/images/conquistas/${achievement}.png`;
 
+                img.style.display =
+                    "block";
+
             }
+
+            else if (img) {
+
+                img.style.display =
+                    "none";
+
+            }
+
+        }
+
+        if (!faceItem && avatarFace) {
+
+            avatarFace.style.display =
+                "none";
+
+        }
+
+        if (!hatItem && avatarHat) {
+
+            avatarHat.style.display =
+                "none";
 
         }
 
@@ -159,6 +246,26 @@ export default class PerfilView {
 
         const btnLogout =
             document.getElementById("btnLogout");
+
+        const btnCoins =
+            document.getElementById(
+                "btnCoins"
+            );
+
+        if (btnCoins) {
+
+            btnCoins.addEventListener(
+                "click",
+                () => {
+
+                    UserModel.addCoins(100);
+
+                    window.location.reload();
+
+                }
+            );
+
+        }
 
         if (btnEditar) {
 

@@ -352,6 +352,7 @@ export default class LojaView {
                     <div class="item">
 
                         <img
+                            class="hat-item ${hat.id}"
                             src="../assets/images/avatar/${hat.id}.png"
                             alt="${hat.id}"
                         >
@@ -499,6 +500,8 @@ export default class LojaView {
                         `${accessory.price} 🪙`;
 
                 }
+
+                console.log(accessory.id);
 
                 container.innerHTML += `
 

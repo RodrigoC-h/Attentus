@@ -96,6 +96,8 @@ main{
 
     object-fit: contain;
 
+    pointer-events: none;
+
 }
 
 .item {
@@ -151,6 +153,25 @@ main{
     height: 70px;
 
     object-fit: contain;
+
+    pointer-events: none;
+
+}
+
+.hat-item {
+
+    width: 70px;
+    height: 70px;
+
+    object-fit: contain;
+
+    pointer-events: none;
+
+}
+
+.auriculares {
+
+    transform: scale(1.3);
 
 }
 
