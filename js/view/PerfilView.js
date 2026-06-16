@@ -247,26 +247,6 @@ export default class PerfilView {
         const btnLogout =
             document.getElementById("btnLogout");
 
-        const btnCoins =
-            document.getElementById(
-                "btnCoins"
-            );
-
-        if (btnCoins) {
-
-            btnCoins.addEventListener(
-                "click",
-                () => {
-
-                    UserModel.addCoins(100);
-
-                    window.location.reload();
-
-                }
-            );
-
-        }
-
         if (btnEditar) {
 
             btnEditar.addEventListener("click", () => {
