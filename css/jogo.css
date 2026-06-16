@@ -321,3 +321,136 @@ h1{
     margin: 10px auto;
 
 }
+
+.foco-timer {
+
+    text-align: center;
+
+    font-size: 2rem;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+
+}
+
+.focus-image-wrapper {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+}
+
+#focusImage {
+
+    width: 107%;
+
+    max-width: 400px;
+
+    border-radius: 5px;
+
+}
+
+.objects-box {
+
+    border: 1px solid #8fb3ff;
+
+    border-radius: 15px;
+
+    padding: 15px;
+
+    margin-top: 15px;
+
+}
+
+#objectives {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    justify-content: center;
+
+}
+
+.objective {
+
+    white-space: nowrap;
+
+}
+
+
+.focus-image-wrapper {
+
+    position: relative;
+
+    width: fit-content;
+
+    margin: auto;
+
+}
+
+#hitboxesContainer {
+
+    position: absolute;
+
+    inset: 0;
+
+}
+
+.hitbox {
+
+    position: absolute;
+
+    background:
+        rgba(
+            255,
+            0,
+            0,
+            0.3
+        );
+
+    border:
+        1px solid red;
+
+    cursor: pointer;
+
+}
+
+#winModal,
+#loseModal,
+#focusWinModal,
+#focusLoseModal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(
+        0,
+        0,
+        0,
+        0.7
+    );
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+#winModal.hidden,
+#loseModal.hidden,
+#focusWinModal.hidden,
+#focusLoseModal.hidden {
+
+    display: none;
+
+}
