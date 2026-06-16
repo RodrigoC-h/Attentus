@@ -410,7 +410,15 @@ export default class JogoView {
 
         if (firstTime) {
 
-            UserModel.addSequenceWin();
+            if (
+
+                Number(this.level) > 0
+
+            ) {
+
+                UserModel.addSequenceWin();
+
+            }
 
             if (
 
