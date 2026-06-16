@@ -414,7 +414,7 @@ export default class JogoView {
 
             if (
 
-                UserModel.getSequenceWinStreak() >= 5
+                UserModel.getSequenceWinStreak() >= 10
 
                 &&
 
@@ -444,6 +444,54 @@ export default class JogoView {
 
             );
 
+            if (
+
+                Number(this.level) > 0
+
+                &&
+
+                !UserModel.hasAchievement(
+                    "primeira_vitoria"
+                )
+
+            ) {
+
+                UserModel.unlockAchievement(
+                    "primeira_vitoria"
+                );
+
+                UserModel.addCoins(5);
+
+                UserModel.addXp(50);
+
+            }
+
+            if (
+
+                UserModel.getTotalCoinsEarned()
+
+                >=
+
+                100
+
+                &&
+
+                !UserModel.hasAchievement(
+                    "colecionador"
+                )
+
+            ) {
+
+                UserModel.unlockAchievement(
+                    "colecionador"
+                );
+
+                UserModel.addCoins(5);
+
+                UserModel.addXp(50);
+
+            }
+
             let xp = 0;
             let coins = 0;
 
@@ -471,24 +519,6 @@ export default class JogoView {
             UserModel.addXp(xp);
 
             UserModel.addCoins(coins);
-
-            if (
-
-                !UserModel.hasAchievement(
-                    "vitoria_perfeita"
-                )
-
-            ) {
-
-                UserModel.unlockAchievement(
-                    "vitoria_perfeita"
-                );
-
-                UserModel.addCoins(5);
-
-                UserModel.addXp(50);
-
-            }
 
             if (
 

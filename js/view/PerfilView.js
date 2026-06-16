@@ -51,6 +51,21 @@ export default class PerfilView {
                 "xpFill"
             );
 
+        const avatar =
+            document.getElementById(
+                "avatar"
+            );
+
+        const equippedAchievements =
+            UserModel.getEquippedAchievements();
+
+        if (avatar) {
+
+            avatar.src =
+                `../assets/images/avatars/${UserModel.getAvatar()}.png`;
+
+        }
+
         if (username) {
 
             username.textContent =
@@ -95,6 +110,43 @@ export default class PerfilView {
                     (xp / xpNeeded) * 100,
                     100
                 )}%`;
+
+        }
+
+        for (
+
+            let i = 0;
+
+            i < 3;
+
+            i++
+
+        ) {
+
+            const img =
+                document.getElementById(
+                    `achievement${i + 1}`
+                );
+
+            const achievement =
+
+                equippedAchievements[i];
+
+            if (
+
+                img
+
+                &&
+
+                achievement
+
+            ) {
+
+                img.src =
+
+                    `../assets/images/conquistas/${achievement}.png`;
+
+            }
 
         }
 
