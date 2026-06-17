@@ -16,17 +16,16 @@ body{
 
 header{
     height:80px;
+    padding:0 20px;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    padding:0 18px;
-
     background:linear-gradient(
         to bottom,
-        #2a2b36,
-        #1b1c29
+        #2c2d38,
+        #181827
     );
 }
 
@@ -69,127 +68,30 @@ h2{
 /* ---------- REAÇÃO ---------- */
 
 .reaction-card{
-    height:130px;
-
-    background:#232437;
-    border:2px solid #4f5275;
 
     display:flex;
     flex-direction:column;
     justify-content:space-between;
-}
 
-.reaction-content{
-    flex:1;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:30px;
-}
-
-.reaction-content img:first-child{
-    width:70px;
-}
-
-.reaction-content img:last-child{
-    width:35px;
-}
-
-.reaction-card span{
+    background:#25253a;
+    border:2px solid #4d4d72;
+    padding:40px;
     text-align:center;
-    padding:10px;
-    font-weight:bold;
+    text-size-adjust: 120%;
+
+    font-weight: bold;
+
 }
 
 /* ---------- SEQUÊNCIA ---------- */
 
 .sequence-card{
-    background:#45206d;
-    padding:12px;
-}
 
-.sequence-card h3{
+    background:#40206f;
+    padding:40px;
     text-align:center;
-    margin-bottom:12px;
-}
+    text-size-adjust: 110%;
 
-/* ---------- FOCO ---------- */
-
-.focus-card{
-    grid-column:1 / span 2;
-
-    background:#7eabea;
-
-    padding:14px;
-}
-
-.focus-items{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-
-    justify-items:center;
-    margin-bottom:10px;
-}
-
-.focus-items img{
-    width:40px;
-}
-
-.focus-card span{
-    display:block;
-    text-align:center;
-    font-size:1.4rem;
-    font-weight:bold;
-}
-
-/* ---------- COLUNA ESQUERDA ---------- */
-
-.left-column{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-
-/* ---------- ORGANIZAÇÃO ---------- */
-
-.organization-card{
-    background:#e8d0a8;
-    padding:8px;
-}
-
-.organization-card h4{
-    color:black;
-    text-align:center;
-    margin-bottom:6px;
-}
-
-.organization-card img{
-    width:100%;
-}
-
-/* ---------- ESCAPE ---------- */
-
-.escape-card{
-    background:#e8d0a8;
-    position:relative;
-}
-
-.escape-card img{
-    width:100%;
-    display:block;
-}
-
-.escape-card span{
-    position:absolute;
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%, -50%);
-
-    color:black;
-    font-weight:bold;
-    font-size:1.4rem;
 }
 
 /* ---------- ALVO ---------- */
@@ -203,10 +105,9 @@ h2{
     align-items:center;
 
     gap:15px;
-}
 
-.target-card img{
-    width:90px;
+    background:#159b89;
+    padding:40px;
 }
 
 .target-card span{

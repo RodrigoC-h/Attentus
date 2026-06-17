@@ -15,16 +15,16 @@ body{
 }
 
 header{
-    height:90px;
+    height:80px;
+    padding:0 20px;
 
     display:flex;
+    justify-content:space-between;
     align-items:center;
-
-    padding-left:25px;
 
     background:linear-gradient(
         to bottom,
-        #2a2b36,
+        #2c2d38,
         #181827
     );
 }
