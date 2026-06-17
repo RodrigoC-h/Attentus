@@ -476,7 +476,7 @@ export default class UserModel {
 
             let level = 0;
 
-            level <= 20;
+            level <= 23;
 
             level++
 
@@ -1046,6 +1046,29 @@ export default class UserModel {
         return user
             ? user.stats.objetosEncontrados
             : 0;
+
+    }
+
+    static addHit() {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id === data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        user.stats.alvosAcertados++;
+
+        this.saveData(data);
 
     }
 

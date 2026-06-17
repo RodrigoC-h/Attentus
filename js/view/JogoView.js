@@ -49,6 +49,10 @@ export default class JogoView {
 
             this.renderFoco();
 
+        } else if (this.game === "alvo") {
+
+            this.renderAlvo();
+
         }
 
     }
@@ -131,6 +135,24 @@ export default class JogoView {
 
                     <button id="btnTentarNovamente">
                         Tentar novamente
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div id="difficultyCompleteModal" class="hidden">
+
+                <div class="modal-content">
+
+                    <h2>🏆</h2>
+
+                    <h3>
+                        Dificuldade Concluída!
+                    </h3>
+
+                    <button id="btnDifficultyComplete">
+                        Voltar
                     </button>
 
                 </div>
@@ -606,6 +628,14 @@ export default class JogoView {
         rewardText.textContent =
             `+${xp} XP | +${coins} moedas`;
 
+        if (Number(this.level) === 23) {
+
+            this.showDifficultyCompleteModal();
+
+            return;
+
+        }
+
         modal.classList.remove(
             "hidden"
         );
@@ -634,11 +664,9 @@ export default class JogoView {
 
                 Number(this.level) + 1;
 
-            if (nextLevel > 20) {
+            if (nextLevel > 23) {
 
-                window.location.href =
-
-                    `niveis.html?game=sequencia&difficulty=${this.difficulty}`;
+                this.showDifficultyCompleteModal();
 
                 return;
 
@@ -673,6 +701,32 @@ export default class JogoView {
         btn.onclick = () => {
 
             window.location.reload();
+
+        };
+
+    }
+
+    showDifficultyCompleteModal() {
+
+        document
+            .getElementById("winModal")
+            .classList.add("hidden");
+
+        const modal =
+            document.getElementById(
+                "difficultyCompleteModal"
+            );
+
+        modal.classList.remove(
+            "hidden"
+        );
+
+        document.getElementById(
+            "btnDifficultyComplete"
+        ).onclick = () => {
+
+            window.location.href =
+                `niveis.html?game=sequencia&difficulty=${this.difficulty}`;
 
         };
 
@@ -1928,6 +1982,502 @@ export default class JogoView {
 
             window.location.href =
                 "mini-jogos.html";
+
+        };
+
+    }
+
+    renderAlvo() {
+
+        if (
+
+            UserModel.getCurrentUser()
+                .gamesPlayed
+                .alvo === 0
+
+        ) {
+
+            UserModel.addGamePlayed(
+                "alvo"
+            );
+
+        }
+
+        this.score = 0;
+
+        const level =
+            Number(this.level);
+
+        if (this.difficulty === "facil") {
+
+            if (level === 0) {
+
+                this.goal = 3;
+
+            } else {
+
+                this.goal = 9 + level;
+
+            }
+
+        }
+
+        else if (this.difficulty === "medio") {
+
+            if (level === 0) {
+
+                this.goal = 5;
+
+            } else {
+
+                this.goal = 14 + level;
+
+            }
+
+        }
+
+        else {
+
+            if (level === 0) {
+
+                this.goal = 8;
+
+            } else {
+
+                this.goal = 19 + level;
+
+            }
+
+        }
+
+        this.timeLeft = 30;
+
+        document.getElementById(
+            "gameContainer"
+        ).innerHTML = `
+
+            <div class="nivel-badge">
+                Nível ${this.level}
+            </div>
+
+            <div id="alvoTimer">
+                30
+            </div>
+
+            <div id="alvoScore">
+                0 / ${this.goal}
+            </div>
+
+            <div id="alvoArea">
+
+                <img
+                    id="target"
+                    src="../assets/images/jogos/alvo.png"
+                >
+
+            </div>
+
+            <div id="alvoWinModal" class="hidden">
+
+                <div class="modal-content">
+
+                    <h2>⭐⭐⭐</h2>
+
+                    <h3>
+                        Nível Completado!
+                    </h3>
+
+                    <p id="alvoRewardText"></p>
+
+                    <button id="btnAlvoVoltar">
+                        Voltar
+                    </button>
+
+                    <button id="btnAlvoContinuar">
+                        Continuar
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div id="alvoLoseModal" class="hidden">
+
+                <div class="modal-content">
+
+                    <h2>❌</h2>
+
+                    <h3>
+                        Tempo Esgotado!
+                    </h3>
+
+                    <button id="btnAlvoRetry">
+                        Tentar novamente
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div id="alvoDifficultyCompleteModal" class="hidden">
+
+                <div class="modal-content">
+
+                    <h2>🏆</h2>
+
+                    <h3>
+                        Dificuldade Concluída!
+                    </h3>
+
+                    <button id="btnAlvoDifficultyComplete">
+                        Voltar
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+        const target =
+
+            document.getElementById(
+                "target"
+            );
+
+        const sizes = {
+
+            facil: 90,
+            medio: 60,
+            dificil: 40
+
+        };
+
+        const targetSize =
+            sizes[this.difficulty];
+
+        target.style.width =
+            `${targetSize}px`;
+
+        target.style.height =
+            `${targetSize}px`;
+
+        this.moveTarget();
+
+        target.addEventListener(
+            "click",
+            () => {
+
+                this.score++;
+
+                UserModel.addHit();
+
+                if (
+
+                    UserModel.getCurrentUser()
+                        .stats
+                        .alvosAcertados >= 100
+
+                    &&
+
+                    !UserModel.hasAchievement(
+                        "atirador_elite"
+                    )
+
+                ) {
+
+                    UserModel.unlockAchievement(
+                        "atirador_elite"
+                    );
+
+                    UserModel.addCoins(5);
+
+                    UserModel.addXp(50);
+
+                }
+
+                document.getElementById(
+                    "alvoScore"
+                ).textContent =
+
+                    `${this.score} / ${this.goal}`;
+
+                this.moveTarget();
+
+                if (
+
+                    this.score >= this.goal
+
+                ) {
+
+                    clearInterval(
+                        this.alvoInterval
+                    );
+
+                    this.showAlvoWinModal();
+
+                }
+
+            }
+
+        );
+
+        this.alvoInterval =
+
+            setInterval(
+                () => {
+
+                    this.timeLeft--;
+
+                    document.getElementById(
+                        "alvoTimer"
+                    ).textContent =
+
+                        this.timeLeft;
+
+                    if (
+
+                        this.timeLeft <= 0
+
+                    ) {
+
+                        clearInterval(
+                            this.alvoInterval
+                        );
+
+                        this.showAlvoLoseModal();
+
+                    }
+
+                },
+                1000
+            );
+        
+    }
+
+    moveTarget() {
+
+        const target =
+            document.getElementById(
+                "target"
+            );
+
+        const area =
+            document.getElementById(
+                "alvoArea"
+            );
+
+        if (!target || !area) {
+            return;
+        }
+
+        const maxX =
+            area.clientWidth -
+            target.offsetWidth;
+
+        const maxY =
+            area.clientHeight -
+            target.offsetHeight;
+
+        target.style.left =
+            `${Math.random() * maxX}px`;
+
+        target.style.top =
+            `${Math.random() * maxY}px`;
+
+    }
+
+    showAlvoWinModal() {
+
+        const firstTime =
+
+            !UserModel.hasCompletedLevel(
+
+                "alvo",
+
+                this.difficulty,
+
+                this.level
+
+            );
+
+        if (firstTime) {
+
+            UserModel.completeLevel(
+
+                "alvo",
+
+                this.difficulty,
+
+                this.level
+
+            );
+
+            let xp = 0;
+            let coins = 0;
+
+            if (this.difficulty === "facil") {
+
+                xp = 10;
+                coins = 2;
+
+            }
+
+            if (this.difficulty === "medio") {
+
+                xp = 15;
+                coins = 3;
+
+            }
+
+            if (this.difficulty === "dificil") {
+
+                xp = 20;
+                coins = 4;
+
+            }
+
+            UserModel.addXp(xp);
+
+            UserModel.addCoins(coins);
+
+        }
+
+        const modal =
+
+            document.getElementById(
+                "alvoWinModal"
+            );
+
+        const rewardText =
+
+            document.getElementById(
+                "alvoRewardText"
+            );
+
+        let xp = 0;
+        let coins = 0;
+
+        if (this.difficulty === "facil") {
+
+            xp = 10;
+            coins = 2;
+
+        }
+
+        if (this.difficulty === "medio") {
+
+            xp = 15;
+            coins = 3;
+
+        }
+
+        if (this.difficulty === "dificil") {
+
+            xp = 20;
+            coins = 4;
+
+        }
+
+        rewardText.textContent =
+
+            `+${xp} XP | +${coins} moedas`;
+
+        if (Number(this.level) === 23) {
+
+            this.showAlvoDifficultyCompleteModal();
+
+            return;
+
+        }
+
+        modal.classList.remove(
+            "hidden"
+        );
+
+        document.getElementById(
+            "btnAlvoVoltar"
+        ).onclick = () => {
+
+            window.location.href =
+
+                `niveis.html?game=alvo&difficulty=${this.difficulty}`;
+
+        };
+
+        document.getElementById(
+            "btnAlvoContinuar"
+        ).onclick = () => {
+
+            const nextLevel =
+
+                Number(this.level) + 1;
+
+            if (nextLevel > 23) {
+
+                this.showAlvoDifficultyCompleteModal();
+
+                return;
+
+            }
+
+            window.location.href =
+
+                `jogo.html?game=alvo&difficulty=${this.difficulty}&level=${nextLevel}`;
+
+        };
+
+    }
+
+    showAlvoLoseModal() {
+
+        const modal =
+
+            document.getElementById(
+                "alvoLoseModal"
+            );
+
+        modal.classList.remove(
+            "hidden"
+        );
+
+        document.getElementById(
+            "btnAlvoRetry"
+        ).onclick = () => {
+
+            window.location.reload();
+
+        };
+
+    }
+
+    showAlvoDifficultyCompleteModal() {
+
+        document
+            .getElementById(
+                "alvoWinModal"
+            )
+            .classList.add(
+                "hidden"
+            );
+
+        const modal =
+
+            document.getElementById(
+                "alvoDifficultyCompleteModal"
+            );
+
+        modal.classList.remove(
+            "hidden"
+        );
+
+        document.getElementById(
+            "btnAlvoDifficultyComplete"
+        ).onclick = () => {
+
+            window.location.href =
+
+                `niveis.html?game=alvo&difficulty=${this.difficulty}`;
 
         };
 
