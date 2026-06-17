@@ -603,3 +603,27 @@ main{
     font-size: 0.9rem;
 
 }
+
+@media (min-width:1024px){
+
+    body{
+        max-width:1200px;
+    }
+
+    main{
+        max-width:1100px;
+        margin:auto;
+    }
+
+    .top-section{
+        gap:50px;
+    }
+
+    .conquistas{
+
+        grid-template-columns:
+            repeat(5,1fr);
+
+    }
+
+}

@@ -57,27 +57,6 @@ main{
     padding:0 5px;
 }
 
-.day{
-    width:28px;
-    height:28px;
-
-    border-radius:50%;
-
-    background:#d8e5ff;
-    color:#1f2535;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:0.75rem;
-    font-weight:bold;
-}
-
-.day.active{
-    box-shadow:0 0 15px gold;
-}
-
 .game-card{
     border-radius:15px;
     overflow:hidden;
@@ -90,16 +69,22 @@ main{
     border:2px solid #4d4d72;
     padding:40px;
     text-align:center;
-    text-size-adjust: 110%;
+    font-size: 1.3rem;
 }
 
 /* sequência */
 
 .sequence{
-    background:#40206f;
-    padding:40px;
-    text-align:center;
-    text-size-adjust: 110%;
+    background: #40206f;
+    padding: 40px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 /* foco */
@@ -207,4 +192,25 @@ main{
     grid-template-columns:1fr 1fr;
     gap:15px;
     margin-top: 120px;
+}
+
+@media (min-width:1024px){
+
+    body{
+        max-width:1200px;
+    }
+
+    .games-grid{
+
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        margin-top:60px;
+    }
+
+    .focus,
+    .target{
+        grid-column:auto;
+    }
+
 }

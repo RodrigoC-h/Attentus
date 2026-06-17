@@ -123,3 +123,13 @@ main{
 .hidden{
     display:none;
 }
+
+@media (min-width:1024px){
+
+    body{
+        max-width:500px;
+        border-left:1px solid #2c2d38;
+        border-right:1px solid #2c2d38;
+    }
+
+}

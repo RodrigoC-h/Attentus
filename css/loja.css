@@ -255,3 +255,37 @@ main{
     transform: scale(1.8);
 
 }
+
+
+@media (min-width:1024px){
+
+    body{
+        max-width:1400px;
+    }
+
+    .shop-container{
+        max-width:1200px;
+        margin:auto;
+    }
+
+    .items-grid{
+
+        grid-template-columns:
+            repeat(5, 1fr);
+
+    }
+
+    .avatar-area{
+
+        padding:40px 0;
+
+    }
+
+    .avatar-circle{
+
+        width:180px;
+        height:180px;
+
+    }
+
+}

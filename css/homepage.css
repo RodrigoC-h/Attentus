@@ -234,3 +234,17 @@ h2{
     font-weight: bold;
 
 }
+
+@media (min-width:1024px){
+
+    body{
+        max-width:1250px;
+        border-left:1px solid #2c2d38;
+        border-right:1px solid #2c2d38;
+    }
+
+    main{
+        padding:40px;
+    }
+
+}

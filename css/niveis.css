@@ -158,3 +158,18 @@ main{
     cursor: not-allowed;
 
 }
+
+@media (min-width:1024px){
+
+    body{
+        max-width:700px;
+        border-left:1px solid #2c2d38;
+        border-right:1px solid #2c2d38;
+    }
+
+    .levels-container{
+        max-width:600px;
+        margin:auto;
+    }
+
+}
