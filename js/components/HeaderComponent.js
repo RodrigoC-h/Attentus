@@ -9,7 +9,6 @@ export default class HeaderComponent {
         const btnAdmin = document.getElementById("btnAdmin");
         const logo = document.getElementById("logo");
         const btnPerfil = document.getElementById("btnPerfil");
-        const btnDefinicoes = document.getElementById("btnDefinicoes");
 
         if (
 
@@ -36,13 +35,6 @@ export default class HeaderComponent {
             btnPerfil.addEventListener("click", () => {
                 window.location.href = "perfil.html";
             });
-        }
-
-        if (btnDefinicoes) {
-            btnDefinicoes.addEventListener("click", () => {
-                window.location.href = "definicoes.html";
-            });
-
         }
 
         if (btnAdmin) {
