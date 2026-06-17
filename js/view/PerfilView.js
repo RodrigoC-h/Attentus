@@ -86,6 +86,8 @@ export default class PerfilView {
 
         this.bindEvents();
 
+        this.bindStatsModal();
+
     }
 
     loadUserData() {
@@ -336,7 +338,7 @@ export default class PerfilView {
         }
 
     }
-
+    
     renderAchievements() {
 
         const container =
@@ -587,6 +589,160 @@ export default class PerfilView {
                     !this.expanded;
 
                 this.renderAchievements();
+
+            }
+        );
+
+    }
+
+    bindStatsModal() {
+
+        const card =
+
+            document.querySelector(
+                ".user-card"
+            );
+
+        const modal =
+
+            document.getElementById(
+                "statsModal"
+            );
+
+        const close =
+
+            document.getElementById(
+                "closeStatsModal"
+            );
+
+        const content =
+
+            document.getElementById(
+                "statsContent"
+            );
+
+        if (
+
+            !card ||
+
+            !modal ||
+
+            !close ||
+
+            !content
+
+        ) {
+
+            return;
+
+        }
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                const reaction =
+
+                    UserModel.getBestReactionTime();
+
+                const sequenciaLevels =
+
+                    UserModel
+                        .getCompletedLevels(
+                            "sequencia"
+                        )
+                        .length;
+
+                const alvoLevels =
+
+                    UserModel
+                        .getCompletedLevels(
+                            "alvo"
+                        )
+                        .length;
+
+                const objects =
+
+                    UserModel.getFoundObjects();
+
+                const hits =
+
+                    UserModel
+                        .getCurrentUser()
+                        .stats
+                        .alvosAcertados;
+
+                content.innerHTML = `
+
+                    <div class="stat-line">
+
+                        <strong>
+                            Reação
+                        </strong>
+
+                        <br>
+
+                        Melhor tempo:
+                        ${reaction ?? "-" } ms
+
+                    </div>
+
+                    <div class="stat-line">
+
+                        <strong>
+                            Sequência
+                        </strong>
+
+                        <br>
+
+                        ${sequenciaLevels}/69 níveis
+
+                    </div>
+
+                    <div class="stat-line">
+
+                        <strong>
+                            Foco
+                        </strong>
+
+                        <br>
+
+                        ${objects} objetos encontrados
+
+                    </div>
+
+                    <div class="stat-line">
+
+                        <strong>
+                            Alvo
+                        </strong>
+
+                        <br>
+
+                        ${alvoLevels}/69 níveis
+
+                        <br>
+
+                        ${hits} alvos acertados
+
+                    </div>
+
+                `;
+
+                modal.classList.remove(
+                    "hidden"
+                );
+
+            }
+        );
+
+        close.addEventListener(
+            "click",
+            () => {
+
+                modal.classList.add(
+                    "hidden"
+                );
 
             }
         );
