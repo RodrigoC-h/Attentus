@@ -91,8 +91,6 @@ export default class UserModel {
 
                 alvosAcertados: 0,
 
-                sequenciaSemErros: 0,
-
                 sequenciaVitoriasSeguidas: 0,
 
                 totalMoedasObtidas: 0
@@ -478,7 +476,7 @@ export default class UserModel {
 
             let level = 0;
 
-            level <= 20;
+            level <= 23;
 
             level++
 
@@ -1013,6 +1011,125 @@ export default class UserModel {
         }
 
         this.saveData(data);
+
+    }
+
+    static addFoundObject() {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id ===
+                    data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        user.stats.objetosEncontrados++;
+
+        this.saveData(data);
+
+    }
+
+    static getFoundObjects() {
+
+        const user =
+            this.getCurrentUser();
+
+        return user
+            ? user.stats.objetosEncontrados
+            : 0;
+
+    }
+
+    static addHit() {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id === data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        user.stats.alvosAcertados++;
+
+        this.saveData(data);
+
+    }
+
+    static addGamePlayed(
+        game
+    ) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id ===
+                    data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        user.gamesPlayed[game]++;
+
+        this.saveData(data);
+
+    }
+
+    static hasPlayedAllGames() {
+
+        const user =
+            this.getCurrentUser();
+
+        if (!user) {
+
+            return false;
+
+        }
+
+        return (
+
+            user.gamesPlayed.reacao > 0
+
+            &&
+
+            user.gamesPlayed.foco > 0
+
+            &&
+
+            user.gamesPlayed.sequencia > 0
+
+            &&
+
+            user.gamesPlayed.organizacao > 0
+
+            &&
+
+            user.gamesPlayed.alvo > 0
+
+        );
 
     }
 }
