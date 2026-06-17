@@ -16,11 +16,18 @@ body{
 }
 
 header{
+    height:80px;
+    padding:0 20px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    padding:24px;
+    background:linear-gradient(
+        to bottom,
+        #2c2d38,
+        #181827
+    );
 }
 
 header h1{

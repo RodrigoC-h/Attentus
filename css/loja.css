@@ -15,13 +15,12 @@ body{
 }
 
 header{
-    height:90px;
+    height:80px;
+    padding:0 20px;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
-
-    padding:0 18px;
 
     background:linear-gradient(
         to bottom,
@@ -133,17 +132,39 @@ main{
 
 .tabs {
 
-    display: flex;
+    display:flex;
+    justify-content:center;
+    margin:20px 0;
+    margin-top: 40px;
+    
+}
 
-    justify-content: center;
+.tabs button{
+    width:75px;
+    height:55px;
 
+    background:#d9d9d9;
+
+    border:1px solid #777;
+
+    font-size:1.6rem;
+
+    cursor:pointer;
+}
+
+.tabs button:first-child{
+    border-radius:8px 0 0 8px;
+}
+
+.tabs button:last-child{
+    border-radius:0 8px 8px 0;
 }
 
 .tab {
 
-    width: 60px;
+    width: 40px;
 
-    height: 40px;
+    height: 20px;
 
 }
 
