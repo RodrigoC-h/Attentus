@@ -1,0 +1,557 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#181827;
+    color:white;
+    font-family:Arial, sans-serif;
+
+    max-width:390px;
+    min-height:100vh;
+
+    margin:auto;
+}
+
+header{
+    height:95px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 18px;
+
+    background:linear-gradient(
+        to bottom,
+        #2c2d38,
+        #181827
+    );
+}
+
+.logo{
+    color:#b8ccff;
+    font-size:2rem;
+    font-weight:bold;
+}
+
+.header-icons{
+    display:flex;
+    gap:12px;
+}
+
+.header-icons button{
+    background:none;
+    border:none;
+
+    color:#b8ccff;
+    font-size:1.5rem;
+
+    cursor:pointer;
+}
+
+main{
+    padding:22px 15px;
+}
+
+.nivel-badge{
+    display:inline-block;
+
+    padding:8px 14px;
+
+    background:#b8ccff;
+    color:#111;
+
+    border-radius:18px;
+
+    font-weight:bold;
+
+    margin-bottom:70px;
+}
+
+h1{
+    text-align:center;
+
+    margin-bottom:40px;
+
+    font-size:2rem;
+}
+
+.game-board{
+    background:#31195a;
+
+    border-radius:25px;
+
+    padding:18px;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    gap:12px;
+}
+
+.color{
+    border:none;
+
+    aspect-ratio:1;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    transition:0.15s;
+}
+
+.color:hover{
+    transform:scale(1.03);
+}
+
+.red{
+    background:#ff0000;
+}
+
+.yellow{
+    background:#ffff00;
+}
+
+.green{
+    background:#00ff00;
+}
+
+.blue{
+    background:#3f45ff;
+}
+
+.orange{
+    background:#ff7f32;
+}
+
+.purple{
+    background:#d000ff;
+}
+
+.white{
+    background:#f2f2f2;
+}
+
+.pink{
+    background:#ff2d96;
+}
+
+.cyan{
+    background:#1294b9;
+}
+
+
+.reaction-track {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 250px;
+
+    overflow: hidden;
+
+}
+
+#semaforo {
+
+    position: absolute;
+
+    top: 120px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 40px;
+
+}
+
+#meta {
+
+    position: absolute;
+
+    right: 10px;
+
+    bottom: 10px;
+
+    width: 130px;
+
+}
+
+#carro {
+
+    position: absolute;
+
+    left: 20px;
+
+    bottom: 20px;
+
+    width: 130px;
+
+    cursor: pointer;
+
+    transition: left 1s linear;
+
+}
+
+#carro.carro-finish {
+
+    left: calc(100% - 180px);
+
+}
+
+.hidden {
+    display: none;
+}
+
+#reactionModal {
+
+    position: fixed;
+    inset: 0;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,0.6);
+
+}
+
+#reactionModal.hidden {
+
+    display: none;
+
+}
+
+#reactionModal:not(.hidden) {
+
+    display: flex;
+
+}
+
+.modal-content {
+
+    background: #22253a;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+}
+
+
+
+.color {
+
+    border: none;
+
+    aspect-ratio: 1;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+.color.active {
+
+    transform: scale(1.08);
+
+    filter: brightness(1.8);
+
+    box-shadow: 0 0 20px white;
+
+}
+
+#winModal,
+#loseModal,
+#difficultyCompleteModal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.7);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+#winModal.hidden,
+#loseModal.hidden,
+#difficultyCompleteModal.hidden {
+
+    display: none;
+
+}
+
+.modal-content {
+
+    background: #22253a;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+}
+
+.modal-content button {
+
+    display: block;
+
+    width: 180px;
+
+    margin: 10px auto;
+
+}
+
+.foco-timer {
+
+    text-align: center;
+
+    font-size: 2rem;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+
+}
+
+.focus-image-wrapper {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+}
+
+#focusImage {
+
+    width: 107%;
+
+    max-width: 400px;
+
+    border-radius: 5px;
+
+}
+
+.objects-box {
+
+    border: 1px solid #8fb3ff;
+
+    border-radius: 15px;
+
+    padding: 15px;
+
+    margin-top: 15px;
+
+}
+
+#objectives {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    justify-content: center;
+
+}
+
+.objective {
+
+    white-space: nowrap;
+
+}
+
+
+.focus-image-wrapper {
+
+    position: relative;
+
+    width: fit-content;
+
+    margin: auto;
+
+}
+
+#hitboxesContainer {
+
+    position: absolute;
+
+    inset: 0;
+
+}
+
+.hitbox {
+
+    position: absolute;
+
+    background:
+        rgba(
+            255,
+            0,
+            0,
+            0.3
+        );
+
+    border:
+        1px solid red;
+
+    cursor: pointer;
+
+}
+
+#winModal,
+#loseModal,
+#focusWinModal,
+#focusLoseModal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(
+        0,
+        0,
+        0,
+        0.7
+    );
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+#winModal.hidden,
+#loseModal.hidden,
+#focusWinModal.hidden,
+#focusLoseModal.hidden,
+#difficultyCompleteModal.hidden {
+
+    display: none;
+
+}
+
+#alvoTimer {
+
+    text-align: center;
+
+    font-size: 2rem;
+
+    font-weight: bold;
+
+    margin-top: -35px;
+    margin-bottom: 15px;
+
+}
+
+#alvoScore {
+
+    text-align: center;
+
+    margin-bottom: 15px;
+
+}
+
+#alvoArea {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 350px;
+
+    border: 3px solid #8fb3ff;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+}
+
+#target {
+
+    position: absolute;
+
+    cursor: pointer;
+
+}
+
+#alvoWinModal,
+#alvoLoseModal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(
+        0,
+        0,
+        0,
+        0.7
+    );
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+#alvoWinModal.hidden,
+#alvoLoseModal.hidden {
+
+    display: none;
+
+}
+
+#alvoDifficultyCompleteModal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(
+        0,
+        0,
+        0,
+        0.7
+    );
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 9999;
+
+}
+
+#alvoDifficultyCompleteModal.hidden {
+
+    display: none;
+
+}
