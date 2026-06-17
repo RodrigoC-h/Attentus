@@ -73,6 +73,10 @@ export default class JogoView {
 
         }
 
+        UserModel.addRecentGame(
+            "sequencia"
+        );
+
         this.gameContainer.innerHTML = `
 
             <div class="nivel-badge">
@@ -748,6 +752,10 @@ export default class JogoView {
 
         }
 
+        UserModel.addRecentGame(
+            "reacao"
+        );
+
         this.gameContainer.innerHTML = `
 
             <h2>
@@ -936,6 +944,10 @@ export default class JogoView {
             );
 
         }
+
+        UserModel.addRecentGame(
+            "foco"
+        );
 
         this.timeLeft = null;
         this.timerInterval = null;
@@ -2002,6 +2014,10 @@ export default class JogoView {
             );
 
         }
+
+        UserModel.addRecentGame(
+            "alvo"
+        );
 
         this.score = 0;
 
