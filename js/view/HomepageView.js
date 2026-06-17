@@ -68,11 +68,6 @@ export default class HomepageView {
                         "Jogo do Alvo";
                     break;
 
-                case "organizacao":
-                    nome =
-                        "Organização";
-                    break;
-
             }
 
             container.innerHTML += `
