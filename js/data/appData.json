@@ -1,0 +1,13 @@
+{
+    "currentUser": null,
+
+    "users": [
+
+    ],
+
+    "settings": {
+        "sound": 65,
+        "music": 65,
+        "language": "pt"
+    }
+}
