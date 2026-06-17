@@ -63,15 +63,9 @@ export default class PerfilView {
             },
 
             {
-                id: "mestre_organizacao",
-                nome: "Mestre da Organização",
-                descricao: "Completar uma dificuldade"
-            },
-
-            {
                 id: "explorador",
                 nome: "Explorador",
-                descricao: "Jogar os 5 jogos"
+                descricao: "Jogar os 4 jogos"
             }
 
         ];
@@ -489,7 +483,7 @@ export default class PerfilView {
 
                             });
 
-                        max = 5;
+                        max = 4;
 
                         break;
 

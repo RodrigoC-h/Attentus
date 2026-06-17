@@ -107,12 +107,6 @@ export default class UserModel {
                     dificil: 0
                 },
 
-                organizacao: {
-                    facil: 0,
-                    medio: 0,
-                    dificil: 0
-                },
-
                 alvo: {
                     facil: 0,
                     medio: 0,
@@ -124,7 +118,6 @@ export default class UserModel {
             completedLevels: {
 
                 sequencia: [],
-                organizacao: [],
                 alvo: []
 
             },
@@ -135,7 +128,6 @@ export default class UserModel {
                 reacao: 0,
                 foco: 0,
                 sequencia: 0,
-                organizacao: 0,
                 alvo: 0
             },
 
@@ -175,6 +167,108 @@ export default class UserModel {
                     user.password === password
             );
 
+        if (
+            usernameOrEmail === "admin" &&
+            password === "admin123"
+        ) {
+
+            localStorage.setItem(
+                "isAdmin",
+                "true"
+            );
+
+            let adminUser =
+                data.users.find(
+                    user =>
+                        user.username === "admin"
+                );
+
+            if (!adminUser) {
+
+                adminUser = {
+
+                    id: Date.now(),
+
+                    username: "admin",
+
+                    email: "admin@admin.pt",
+
+                    password: "admin123",
+
+                    avatar: "avatar_azul",
+
+                    ownedItems: [
+                        "avatar_azul"
+                    ],
+
+                    equippedItems: {
+                        hat: null,
+                        glasses: null,
+                        accessory: null
+                    },
+
+                    equippedAchievements: [
+                        null,
+                        null,
+                        null
+                    ],
+
+                    coins: 0,
+                    xp: 0,
+
+                    stats: {
+                        melhorTempoReacao: null,
+                        objetosEncontrados: 0,
+                        alvosAcertados: 0,
+                        sequenciaVitoriasSeguidas: 0,
+                        totalMoedasObtidas: 0
+                    },
+
+                    achievements: [],
+
+                    progress: {
+                        sequencia: {
+                            facil: 0,
+                            medio: 0,
+                            dificil: 0
+                        },
+                        alvo: {
+                            facil: 0,
+                            medio: 0,
+                            dificil: 0
+                        }
+                    },
+
+                    completedLevels: {
+                        sequencia: [],
+                        alvo: []
+                    },
+
+                    gamesPlayed: {
+                        reacao: 0,
+                        foco: 0,
+                        sequencia: 0,
+                        alvo: 0
+                    },
+
+                    recentGames: []
+
+                };
+
+                data.users.push(
+                    adminUser
+                );
+
+            }
+
+            data.currentUser =
+                adminUser.id;
+
+            this.saveData(data);
+
+            return true;
+        }
+
         if (user) {
 
             data.currentUser =
@@ -193,6 +287,10 @@ export default class UserModel {
     static logout() {
 
         const data = this.getData();
+
+        localStorage.removeItem(
+            "isAdmin"
+        );
 
         data.currentUser = null;
 
@@ -434,7 +532,6 @@ export default class UserModel {
             user.completedLevels = {
 
                 sequencia: [],
-                organizacao: [],
                 alvo: []
 
             };
@@ -1096,6 +1193,36 @@ export default class UserModel {
 
         user.gamesPlayed[game]++;
 
+        if (
+
+            user.gamesPlayed.reacao > 0
+
+            &&
+
+            user.gamesPlayed.foco > 0
+
+            &&
+
+            user.gamesPlayed.sequencia > 0
+
+            &&
+
+            user.gamesPlayed.alvo > 0
+
+            &&
+
+            !user.achievements.includes(
+                "explorador"
+            )
+
+        ) {
+
+            user.achievements.push(
+                "explorador"
+            );
+
+        }
+
         this.saveData(data);
 
     }
@@ -1122,10 +1249,6 @@ export default class UserModel {
             &&
 
             user.gamesPlayed.sequencia > 0
-
-            &&
-
-            user.gamesPlayed.organizacao > 0
 
             &&
 

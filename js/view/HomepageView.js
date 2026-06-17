@@ -34,11 +34,11 @@ export default class HomepageView {
             return;
         }
 
-        const games =
+        const user =
+            UserModel.getCurrentUser();
 
-            UserModel
-                .getCurrentUser()
-                .recentGames || [];
+        const games =
+            user?.recentGames || [];
 
         container.innerHTML = "";
 

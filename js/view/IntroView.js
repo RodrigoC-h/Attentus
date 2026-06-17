@@ -8,15 +8,41 @@ export default class IntroView {
 
     bindEvents() {
 
-        const btnPerfil =
-            document.getElementById("btnPerfil");
+        const reactionCard =
+            document.querySelector(".reaction-card");
 
-        if (btnPerfil) {
+        if (reactionCard) {
 
-            btnPerfil.addEventListener("click", () => {
-                window.location.href = "login.html";
+            reactionCard.addEventListener(
+                "click",
+                () => {
 
-            });
+                    document
+                        .getElementById("introModal")
+                        .classList.remove("hidden");
+
+                }
+            );
+
         }
+
+        const btnContinuar =
+            document.getElementById("btnContinuar");
+
+        if (btnContinuar) {
+
+            btnContinuar.addEventListener(
+                "click",
+                () => {
+
+                    window.location.href =
+                        "login.html";
+
+                }
+            );
+
+        }
+
     }
+
 }

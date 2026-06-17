@@ -1,5 +1,4 @@
-import StorageManager
-from "./managers/StorageManager.js";
+import StorageManager from "./managers/StorageManager.js";
 
 import HomepageView from "./view/HomepageView.js";
 import MiniJogosView from "./view/MiniJogosView.js";
@@ -12,6 +11,7 @@ import IndexView from "./view/IndexView.js";
 import JogoView from "./view/JogoView.js";
 import DificuldadeView from "./view/DificuldadeView.js";
 import NiveisView from "./view/NiveisView.js";
+import AdminView from "./view/AdminView.js";
 
 StorageManager.initialize();
 
@@ -59,4 +59,8 @@ if (pagina.includes("dificuldade.html")) {
 
 if (pagina.includes("niveis.html")) {
     new NiveisView();
+}
+
+if (pagina.includes("admin.html")) {
+    new AdminView();
 }
