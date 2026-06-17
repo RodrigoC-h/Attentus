@@ -2,7 +2,6 @@ import StorageManager from "./managers/StorageManager.js";
 
 import HomepageView from "./view/HomepageView.js";
 import MiniJogosView from "./view/MiniJogosView.js";
-import DefinicoesView from "./view/DefinicoesView.js";
 import PerfilView from "./view/PerfilView.js";
 import LojaView from "./view/LojaView.js";
 import LoginView from "./view/LoginView.js";
@@ -23,10 +22,6 @@ if (pagina.includes("homepage.html")) {
 
 if (pagina.includes("mini-jogos.html")) {
     new MiniJogosView();
-}
-
-if (pagina.includes("definicoes.html")) {
-    new DefinicoesView();
 }
 
 if (pagina.includes("perfil.html")) {
