@@ -5,22 +5,33 @@ export default class JogoView {
 
     constructor() {
 
-        if (!UserModel.isLoggedIn()) {
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const tutorial =
+            params.get("tutorial");
+
+        this.isIntroTutorial =
+            tutorial === "true";
+
+        if (
+            !UserModel.isLoggedIn()
+            &&
+            tutorial !== "true"
+        ) {
 
             window.location.href =
                 "login.html";
 
             return;
-
         }
 
         new HeaderComponent();
 
         this.gameContainer =
             document.getElementById("gameContainer");
-
-        const params =
-            new URLSearchParams(window.location.search);
 
         this.game =
             params.get("game");
@@ -32,7 +43,6 @@ export default class JogoView {
             params.get("level");
 
         this.loadGame();
-
     }
 
     loadGame() {
@@ -79,9 +89,11 @@ export default class JogoView {
 
         this.gameContainer.innerHTML = `
 
-            <div class="nivel-badge">
-                Nível ${this.level || 1}
-            </div>
+            ${this.isIntroTutorial ? "" : `
+                <div class="nivel-badge">
+                    Nível ${this.level || 1}
+                </div>
+            `}
 
             <div class="game-board">
 
@@ -436,6 +448,14 @@ export default class JogoView {
 
     showWinModal() {
 
+        if (this.isIntroTutorial) {
+
+            this.showIntroFinishModal();
+
+            return;
+
+        }
+
         const firstTime =
 
             !UserModel.hasCompletedLevel(
@@ -758,7 +778,7 @@ export default class JogoView {
 
         this.gameContainer.innerHTML = `
 
-            <h2>
+            <h2 id="reactionTitle">
                 Clica no carro quando a luz ficar verde!
             </h2>
 
@@ -807,6 +827,14 @@ export default class JogoView {
     }
 
     startReactionGame() {
+
+        if (this.isIntroTutorial) {
+
+            document.getElementById(
+                "reactionTitle"
+            ).style.fontSize = "2rem";
+
+        }
 
         const semaforo =
             document.getElementById("semaforo");
@@ -896,9 +924,19 @@ export default class JogoView {
 
                 setTimeout(() => {
 
-                    modal.classList.remove(
-                        "hidden"
-                    );
+                    if (this.isIntroTutorial) {
+
+                        this.showIntroFinishModal();
+
+                    }
+
+                    else {
+
+                        modal.classList.remove(
+                            "hidden"
+                        );
+
+                    }
 
                 }, 1000);
 
@@ -2066,9 +2104,11 @@ export default class JogoView {
             "gameContainer"
         ).innerHTML = `
 
-            <div class="nivel-badge">
-                Nível ${this.level}
-            </div>
+            ${this.isIntroTutorial ? "" : `
+                <div class="nivel-badge">
+                    Nível ${this.level}
+                </div>
+            `}
 
             <div id="alvoTimer">
                 30
@@ -2163,8 +2203,14 @@ export default class JogoView {
 
         };
 
-        const targetSize =
+        let targetSize =
             sizes[this.difficulty];
+
+        if (this.isIntroTutorial) {
+
+            targetSize = 90;
+
+        }
 
         target.style.width =
             `${targetSize}px`;
@@ -2298,6 +2344,14 @@ export default class JogoView {
     }
 
     showAlvoWinModal() {
+
+        if (this.isIntroTutorial) {
+
+            this.showIntroFinishModal();
+
+            return;
+
+        }
 
         const firstTime =
 
@@ -2490,6 +2544,44 @@ export default class JogoView {
                 `niveis.html?game=alvo&difficulty=${this.difficulty}`;
 
         };
+
+    }
+
+    showIntroFinishModal() {
+
+        document.body.insertAdjacentHTML(
+            "beforeend",
+            `
+            <div id="introFinishModal">
+
+                <div class="modal-content">
+
+                    <h2>Parabéns!</h2>
+
+                    <p>
+                        Já experimentaste a Attentus.
+                    </p>
+
+                    <button id="btnIntroFinish">
+                        Continuar
+                    </button>
+
+                </div>
+
+            </div>
+            `
+        );
+
+        document
+            .getElementById(
+                "btnIntroFinish"
+            )
+            .onclick = () => {
+
+                window.location.href =
+                    "login.html";
+
+            };
 
     }
 

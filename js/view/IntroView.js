@@ -8,18 +8,51 @@ export default class IntroView {
 
     bindEvents() {
 
-        const reactionCard =
-            document.querySelector(".reaction-card");
+        const cardReacao =
+            document.getElementById("cardReacao");
 
-        if (reactionCard) {
+        const cardSequencia =
+            document.getElementById("cardSequencia");
 
-            reactionCard.addEventListener(
+        const cardAlvo =
+            document.getElementById("cardAlvo");
+
+        if (cardReacao) {
+
+            cardReacao.addEventListener(
                 "click",
                 () => {
 
-                    document
-                        .getElementById("introModal")
-                        .classList.remove("hidden");
+                    window.location.href =
+                        "jogo.html?game=reacao&tutorial=true";
+
+                }
+            );
+
+        }
+
+        if (cardSequencia) {
+
+            cardSequencia.addEventListener(
+                "click",
+                () => {
+
+                    window.location.href =
+                        "jogo.html?game=sequencia&difficulty=facil&level=0&tutorial=true";
+
+                }
+            );
+
+        }
+
+        if (cardAlvo) {
+
+            cardAlvo.addEventListener(
+                "click",
+                () => {
+
+                    window.location.href =
+                        "jogo.html?game=alvo&difficulty=facil&level=0&tutorial=true";
 
                 }
             );
