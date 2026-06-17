@@ -1,0 +1,29 @@
+[
+  {
+    "username": "admin",
+    "password": "admin123",
+    "isAdmin": true,
+    "xp": 0,
+    "moedas": 0,
+    "nivel": 1,
+    "conquistas": []
+  },
+  {
+    "username": "joao",
+    "password": "joao123",
+    "isAdmin": false,
+    "xp": 750,
+    "moedas": 80,
+    "nivel": 5,
+    "conquistas": ["Primeira Vitória", "10 Jogos Jogados"]
+  },
+  {
+    "username": "maria",
+    "password": "maria123",
+    "isAdmin": false,
+    "xp": 1200,
+    "moedas": 150,
+    "nivel": 8,
+    "conquistas": ["Primeira Vitória", "Ofensiva"]
+  }
+]

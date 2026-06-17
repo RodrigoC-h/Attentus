@@ -1,11 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
+
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
-    
+
+<header>
+    <h1>Attentus</h1>
+</header>
+
+<main>
+
+    <div class="switch-container">
+
+        <button id="btnLogin" class="active">
+            Iniciar Sessão
+        </button>
+
+        <button id="btnRegisto">
+            Registo
+        </button>
+
+    </div>
+
+    <!-- LOGIN -->
+
+    <form id="loginForm">
+
+        <div class="input-group">
+            <label>E-mail ou nome de utilizador</label>
+            <input id="loginUser" type="text" required>
+        </div>
+
+        <div class="input-group">
+            <label>Palavra-passe</label>
+            <input id="loginPassword" type="password" required>
+        </div>
+
+        <button id="btnEntrar" class="submit-btn">
+            Iniciar Sessão
+        </button>
+
+    </form>
+
+    <!-- REGISTO -->
+
+    <form id="registoForm" class="hidden">
+
+        <div class="input-group">
+            <label>Utilizador</label>
+            <input id="registerUsername" type="text" required>
+        </div>
+
+        <div class="input-group">
+            <label>E-mail</label>
+            <input id="registerEmail" type="email" required>
+        </div>
+
+        <div class="input-group">
+            <label>Palavra-passe</label>
+            <input id="registerPassword" type="password" required>
+        </div>
+
+        <div class="input-group">
+            <label>Confirmar palavra-passe</label>
+            <input id="registerConfirmPassword" type="password" required>
+        </div>
+
+        <button id="btnCriarConta" class="submit-btn">
+            Registar
+        </button>
+
+    </form>
+
+</main>
+
+<script type="module" src="../js/view/LoginView.js"></script>
+
 </body>
 </html>

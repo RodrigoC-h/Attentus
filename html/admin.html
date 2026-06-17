@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — Attentus</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <header class="admin-header">
+        <h1 class="logo">Attentus</h1>
+        <div class="header-right">
+            <span id="admin-username" class="admin-badge"></span>
+            <button id="btn-logout" class="btn-logout">Sair</button>
+        </div>
+    </header>
+
+    <main class="admin-main">
+
+        <div class="page-title">
+            <h2>Gestão de Utilizadores</h2>
+            <span id="user-count" class="user-count"></span>
+        </div>
+
+        <div id="user-list" class="user-list">
+            <!-- Cartões gerados pelo AdminView.js -->
+        </div>
+
+    </main>
+
+    <!-- Modal de confirmação -->
+    <div id="confirm-modal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <h3>Apagar utilizador</h3>
+            <p id="modal-message"></p>
+            <div class="modal-actions">
+                <button id="btn-confirm-delete" class="btn-danger">Apagar</button>
+                <button id="btn-cancel-delete" class="btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/view/AdminView.js"></script>
+
+</body>
+</html>
