@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attentus - Mini Jogos</title>
+    <link rel="stylesheet" href="../css/mini-jogos.css">
+</head>
+<body>
+
+<header>
+    <h1 id="logo" class="logo">Attentus</h1>
+
+    <div class="header-icons">
+        <button id="btnPerfil">
+            👤
+        </button>
+
+        <button id="btnDefinicoes">
+            ⚙️
+        </button>
+    </div>
+</header>
+
+    <main>
+
+        <section class="streak">
+            <div class="day">20</div>
+            <div class="day">21</div>
+            <div class="day">22</div>
+            <div class="day active">23</div>
+            <div class="day">24</div>
+            <div class="day">25</div>
+            <div class="day">26</div>
+        </section>
+
+        <section class="games-grid">
+
+            <div id="cardReacao" class="game-card reaction">
+                <img src="../assets/images/carro.png" alt="">
+                <h3>Jogo da reação</h3>
+            </div>
+
+            <div id="cardSequencia" class="game-card sequence">
+                <h3>Repetir sequência</h3>
+
+                <div class="sequence-grid">
+                    <div class="red"></div>
+                    <div class="yellow"></div>
+                    <div class="green"></div>
+
+                    <div class="blue"></div>
+                    <div class="orange"></div>
+                    <div class="purple"></div>
+
+                    <div class="white"></div>
+                    <div class="pink"></div>
+                    <div class="cyan"></div>
+                </div>
+            </div>
+
+            <div id="cardFoco" class="game-card focus">
+                <div class="focus-icons">
+                    <img src="../assets/images/livro.png" alt="">
+                    <img src="../assets/images/bola.png" alt="">
+                    <img src="../assets/images/caneca.png" alt="">
+                    <img src="../assets/images/mochila.png" alt="">
+                    <img src="../assets/images/planta.png" alt="">
+                    <img src="../assets/images/sapatilha.png" alt="">
+                    <img src="../assets/images/lupa.png" alt="">
+                    <img src="../assets/images/headphones.png" alt="">
+                    <img src="../assets/images/camera.png" alt="">
+                </div>
+
+                <h3>Jogo do foco</h3>
+            </div>
+
+            <div class="left-column">
+
+                <div id="cardOrganizacao" class="game-card organization">
+                    <h4>Jogo de organização</h4>
+                    <img src="../assets/images/prateleira.png" alt="">
+                </div>
+
+            </div>
+
+            <div id="cardAlvo" class="game-card target">
+                <img src="../assets/images/alvo.png" alt="">
+                <h3>Jogo do alvo</h3>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script type="module" src="../js/app.js"></script>
+    
+</body>
+</html>
