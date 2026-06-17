@@ -22,9 +22,6 @@ export default class MiniJogosView {
 
     bindEvents() {
 
-        const cardEscape =
-            document.getElementById("cardEscape");
-
         const cardReacao =
             document.getElementById("cardReacao");
 
@@ -34,22 +31,8 @@ export default class MiniJogosView {
         const cardSequencia =
             document.getElementById("cardSequencia");
 
-        const cardOrganizacao =
-            document.getElementById("cardOrganizacao");
-
         const cardAlvo =
             document.getElementById("cardAlvo");
-
-        if (cardEscape) {
-
-            cardEscape.addEventListener("click", () => {
-
-                window.location.href =
-                    "dificuldade.html?game=escape";
-
-            });
-
-        }
 
         if (cardReacao) {
 
@@ -79,17 +62,6 @@ export default class MiniJogosView {
 
                 window.location.href =
                     "dificuldade.html?game=sequencia";
-
-            });
-
-        }
-
-        if (cardOrganizacao) {
-
-            cardOrganizacao.addEventListener("click", () => {
-
-                window.location.href =
-                    "dificuldade.html?game=organizacao";
 
             });
 

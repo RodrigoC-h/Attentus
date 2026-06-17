@@ -81,12 +81,10 @@ h2{
 
 .reaction-content{
     flex:1;
-
     display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-
-    padding:12px;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
 }
 
 .reaction-content img:first-child{
@@ -94,7 +92,7 @@ h2{
 }
 
 .reaction-content img:last-child{
-    width:18px;
+    width:35px;
 }
 
 .reaction-card span{
@@ -235,4 +233,45 @@ h2{
 .target-card span{
     font-size:1.8rem;
     font-weight:bold;
+}
+
+.hidden{
+    display:none;
+}
+
+#introModal{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.7);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:#232437;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    text-align:center;
+}
+
+.modal-content button{
+    margin-top:15px;
+
+    padding:10px 20px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+.target-card{
+    grid-column:1 / span 2;
 }

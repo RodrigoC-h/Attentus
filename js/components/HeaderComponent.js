@@ -6,9 +6,25 @@ export default class HeaderComponent {
 
     bindEvents() {
 
+        const btnAdmin = document.getElementById("btnAdmin");
         const logo = document.getElementById("logo");
         const btnPerfil = document.getElementById("btnPerfil");
         const btnDefinicoes = document.getElementById("btnDefinicoes");
+
+        if (
+
+            btnAdmin &&
+
+            localStorage.getItem(
+                "isAdmin"
+            ) === "true"
+
+        ) {
+
+            btnAdmin.style.display =
+                "block";
+
+        }
 
         if (logo) {
             logo.addEventListener("click", () => {
@@ -26,6 +42,20 @@ export default class HeaderComponent {
             btnDefinicoes.addEventListener("click", () => {
                 window.location.href = "definicoes.html";
             });
+
+        }
+
+        if (btnAdmin) {
+
+            btnAdmin.addEventListener(
+                "click",
+                () => {
+
+                    window.location.href =
+                        "admin.html";
+
+                }
+            );
 
         }
     }

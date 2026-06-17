@@ -1952,23 +1952,17 @@ export default class JogoView {
             30
         );
 
-        if (
-
+        console.log(
+            "Todos os jogos?",
             UserModel.hasPlayedAllGames()
+        );
 
-            &&
-
-            !UserModel.hasAchievement(
+        console.log(
+            "Tem explorador?",
+            UserModel.hasAchievement(
                 "explorador"
             )
-
-        ) {
-
-            UserModel.unlockAchievement(
-                "explorador"
-            );
-
-        }
+        );
 
         UserModel.addCoins(
             15

@@ -67,7 +67,6 @@ export default class LojaView {
             { id: "mestre_sequencias" },
             { id: "olho_aguia" },
             { id: "atirador_elite" },
-            { id: "mestre_organizacao" },
             { id: "explorador" }
 
         ];
