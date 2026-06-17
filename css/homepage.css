@@ -185,3 +185,45 @@ h2{
 
     cursor:pointer;
 }
+
+.recent-games {
+
+    margin-top: 20px;
+
+}
+
+#recentGamesContainer {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 15px;
+
+}
+
+.recent-card {
+
+    background: #22253a;
+
+    border: 1px solid #8fb3ff;
+
+    border-radius: 20px;
+
+    min-height: 110px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    font-size: 1.4rem;
+
+    font-weight: bold;
+
+}

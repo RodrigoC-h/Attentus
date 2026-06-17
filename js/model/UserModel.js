@@ -137,7 +137,9 @@ export default class UserModel {
                 sequencia: 0,
                 organizacao: 0,
                 alvo: 0
-            }
+            },
+
+            recentGames: []
 
         };
 
@@ -1130,6 +1132,48 @@ export default class UserModel {
             user.gamesPlayed.alvo > 0
 
         );
+
+    }
+
+    static addRecentGame(game) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id ===
+                    data.currentUser
+            );
+
+        if (!user) {
+            return;
+        }
+
+        if (!user.recentGames) {
+
+            user.recentGames = [];
+
+        }
+
+        user.recentGames =
+
+            user.recentGames.filter(
+                g => g !== game
+            );
+
+        user.recentGames.unshift(
+            game
+        );
+
+        user.recentGames =
+            user.recentGames.slice(
+                0,
+                3
+            );
+
+        this.saveData(data);
 
     }
 }
