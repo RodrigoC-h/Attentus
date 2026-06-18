@@ -1,14 +1,37 @@
 export default class HeaderComponent {
 
     constructor() {
+
         this.bindEvents();
+
     }
 
     bindEvents() {
 
-        const btnAdmin = document.getElementById("btnAdmin");
-        const logo = document.getElementById("logo");
-        const btnPerfil = document.getElementById("btnPerfil");
+        // =========================
+        // ELEMENTOS DO HEADER
+        // =========================
+
+        const logo =
+            document.getElementById(
+                "logo"
+            );
+
+        const btnPerfil =
+            document.getElementById(
+                "btnPerfil"
+            );
+
+        const btnAdmin =
+            document.getElementById(
+                "btnAdmin"
+            );
+
+        // =========================
+        // VISIBILIDADE DO BOTÃO ADMIN
+        // =========================
+        // Apenas mostra o botão
+        // se o utilizador for admin
 
         if (
 
@@ -25,17 +48,48 @@ export default class HeaderComponent {
 
         }
 
+        // =========================
+        // LOGÓTIPO
+        // =========================
+        // Volta para a homepage
+
         if (logo) {
-            logo.addEventListener("click", () => {
-                window.location.href = "homepage.html";
-            });
+
+            logo.addEventListener(
+                "click",
+                () => {
+
+                    window.location.href =
+                        "homepage.html";
+
+                }
+            );
+
         }
 
+        // =========================
+        // PERFIL
+        // =========================
+        // Abre a página de perfil
+
         if (btnPerfil) {
-            btnPerfil.addEventListener("click", () => {
-                window.location.href = "perfil.html";
-            });
+
+            btnPerfil.addEventListener(
+                "click",
+                () => {
+
+                    window.location.href =
+                        "perfil.html";
+
+                }
+            );
+
         }
+
+        // =========================
+        // ADMIN
+        // =========================
+        // Abre o painel de administração
 
         if (btnAdmin) {
 
@@ -50,5 +104,7 @@ export default class HeaderComponent {
             );
 
         }
+
     }
+
 }

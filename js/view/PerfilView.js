@@ -1,10 +1,23 @@
 import HeaderComponent from "../components/HeaderComponent.js";
 import UserModel from "../model/UserModel.js";
 
+// =========================
+// PERFIL DO UTILIZADOR
+// =========================
+// Responsável por mostrar
+// informações do utilizador,
+// avatar, conquistas e estatísticas.
 export default class PerfilView {
 
+    // =========================
+    // INICIALIZAÇÃO
+    // =========================
+    // Verifica autenticação,
+    // prepara o inventário,
+    // carrega dados e eventos.
     constructor() {
 
+        // Impede acesso sem login
         if (!UserModel.isLoggedIn()) {
 
             window.location.href =
@@ -14,10 +27,15 @@ export default class PerfilView {
 
         }
 
+        // Garante que o utilizador possui
+        // todas as estruturas necessárias
+        // do inventário
         UserModel.ensureInventory();
 
         new HeaderComponent();
 
+        // Lista de todas as conquistas
+        // disponíveis na aplicação
         this.achievements = [
 
             {
@@ -83,9 +101,15 @@ export default class PerfilView {
         this.bindStatsModal();
 
     }
-
+    
+    // =========================
+    // CARREGAR DADOS
+    // =========================
+    // Atualiza todas as informações
+    // visíveis no perfil.
     loadUserData() {
 
+        // Elementos da interface
         const username =
             document.getElementById(
                 "username"
@@ -126,9 +150,11 @@ export default class PerfilView {
                 "avatarHat"
             );
 
+        // Conquistas atualmente equipadas
         const equippedAchievements =
             UserModel.getEquippedAchievements();
 
+        // Mostra o nome do utilizador
         if (username) {
 
             username.textContent =
@@ -136,6 +162,7 @@ export default class PerfilView {
 
         }
 
+        // Mostra moedas disponíveis
         if (saldo) {
 
             saldo.textContent =
@@ -143,6 +170,7 @@ export default class PerfilView {
 
         }
 
+        // Cálculo do nível e XP
         const xp =
             UserModel.getXp();
 
@@ -176,6 +204,7 @@ export default class PerfilView {
 
         }
 
+        // Carrega o avatar principal
         if (avatarBase) {
 
             avatarBase.src =
@@ -184,6 +213,7 @@ export default class PerfilView {
 
         }
 
+        // Obtém acessório facial equipado
         const faceItem =
 
             UserModel.getEquippedItem(
@@ -238,6 +268,8 @@ export default class PerfilView {
 
         }
 
+        // Mostra até 3 conquistas equipadas
+        // junto ao avatar
         for (
 
             let i = 0;
@@ -299,6 +331,11 @@ export default class PerfilView {
 
     }
 
+    // =========================
+    // BOTÕES DO PERFIL
+    // =========================
+    // Liga os botões de editar
+    // perfil e terminar sessão.
     bindEvents() {
 
         const btnEditar =
@@ -307,6 +344,7 @@ export default class PerfilView {
         const btnLogout =
             document.getElementById("btnLogout");
 
+        // Abre a loja para personalização
         if (btnEditar) {
 
             btnEditar.addEventListener("click", () => {
@@ -318,6 +356,7 @@ export default class PerfilView {
 
         }
 
+        // Termina a sessão atual
         if (btnLogout) {
 
             btnLogout.addEventListener("click", () => {
@@ -333,6 +372,11 @@ export default class PerfilView {
 
     }
     
+    // =========================
+    // MOSTRAR CONQUISTAS
+    // =========================
+    // Atualiza a lista de conquistas
+    // e respetivo progresso.
     renderAchievements() {
 
         const container =
@@ -348,6 +392,8 @@ export default class PerfilView {
 
         container.innerHTML = "";
 
+        // Mostra apenas 3 conquistas
+        // ou todas caso esteja expandido
         const achievementsToShow =
 
             this.expanded
@@ -362,6 +408,8 @@ export default class PerfilView {
         achievementsToShow.forEach(
             achievement => {
 
+                // Verifica se a conquista
+                // já foi desbloqueada
                 const unlocked =
 
                     UserModel.hasAchievement(
@@ -372,6 +420,8 @@ export default class PerfilView {
 
                 let max = 1;
 
+                // Calcula o progresso específico
+                // de cada conquista
                 switch (achievement.id) {
 
                     case "primeira_vitoria":
@@ -561,6 +611,11 @@ export default class PerfilView {
 
     }
 
+    // =========================
+    // EXPANDIR CONQUISTAS
+    // =========================
+    // Mostra ou esconde a lista
+    // completa de conquistas.
     bindAchievementExpand() {
 
         const btn =
@@ -579,6 +634,8 @@ export default class PerfilView {
             "click",
             () => {
 
+                // Alterna entre expandido
+                // e recolhido
                 this.expanded =
                     !this.expanded;
 
@@ -589,6 +646,10 @@ export default class PerfilView {
 
     }
 
+    // MODAL DE ESTATÍSTICAS
+    // =========================
+    // Mostra estatísticas detalhadas
+    // do utilizador.
     bindStatsModal() {
 
         const card =
@@ -631,10 +692,13 @@ export default class PerfilView {
 
         }
 
+        // Abre o modal quando
+        // o cartão do utilizador é clicado
         card.addEventListener(
             "click",
             () => {
 
+                // Recolhe estatísticas dos jogos
                 const reaction =
 
                     UserModel.getBestReactionTime();
@@ -666,6 +730,8 @@ export default class PerfilView {
                         .stats
                         .alvosAcertados;
 
+                // Constrói o conteúdo
+                // do modal
                 content.innerHTML = `
 
                     <div class="stat-line">
@@ -730,6 +796,7 @@ export default class PerfilView {
             }
         );
 
+        // Fecha o modal
         close.addEventListener(
             "click",
             () => {

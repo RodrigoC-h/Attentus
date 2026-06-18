@@ -2,6 +2,10 @@ import StorageManager from "../managers/StorageManager.js";
 
 export default class UserModel {
 
+
+    // =========================
+    // DADOS GERAIS
+    // =========================
     static getData() {
 
         return StorageManager.load();
@@ -47,6 +51,7 @@ export default class UserModel {
 
         const user = {
 
+            // Dados da conta
             id: Date.now(),
 
             username,
@@ -55,8 +60,10 @@ export default class UserModel {
 
             password,
 
+            // Personalização
             avatar: "avatar_azul",
 
+            // Inventário
             ownedItems: [
 
                 "avatar_azul"
@@ -73,16 +80,7 @@ export default class UserModel {
 
             },
 
-            equippedAchievements: [
-
-                null,
-                null,
-                null
-
-            ],
-
-            coins: 0,
-
+            // Estatísticas
             stats: {
 
                 melhorTempoReacao: null,
@@ -97,8 +95,23 @@ export default class UserModel {
 
             },
 
+            // Conquistas
             achievements: [],
 
+            equippedAchievements: [
+
+                null,
+                null,
+                null
+
+            ],
+
+            // Economia
+            coins: 0,
+
+            xp: 0,
+
+            // Progressão
             progress: {
 
                 sequencia: {
@@ -122,8 +135,7 @@ export default class UserModel {
 
             },
 
-            xp: 0,
-
+            // Histórico de utilização
             gamesPlayed: {
                 reacao: 0,
                 foco: 0,
@@ -146,6 +158,10 @@ export default class UserModel {
 
     }
 
+
+    // =========================
+    // AUTENTICAÇÃO
+    // =========================
     static login(
         usernameOrEmail,
         password
@@ -298,6 +314,15 @@ export default class UserModel {
 
     }
 
+    static isLoggedIn() {
+
+        return this.getCurrentUser() !== undefined;
+
+    }
+
+    // =========================
+    // INFORMAÇÕES DO UTILIZADOR
+    // =========================
     static getUsername() {
 
         const user =
@@ -375,12 +400,6 @@ export default class UserModel {
 
     }
 
-    static isLoggedIn() {
-
-        return this.getCurrentUser() !== undefined;
-
-    }
-
     static getXp() {
 
         const user =
@@ -425,6 +444,9 @@ export default class UserModel {
 
     }
     
+    // =========================
+    // ESTATÍSTICAS
+    // =========================
     static getBestReactionTime() {
 
         const user =
@@ -469,6 +491,68 @@ export default class UserModel {
 
     }
 
+    static addFoundObject() {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id ===
+                    data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        user.stats.objetosEncontrados++;
+
+        this.saveData(data);
+
+    }
+
+    static getFoundObjects() {
+
+        const user =
+            this.getCurrentUser();
+
+        return user
+            ? user.stats.objetosEncontrados
+            : 0;
+
+    }
+
+    static addHit() {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id === data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        user.stats.alvosAcertados++;
+
+        this.saveData(data);
+
+    }
+
+
+    // =========================
+    // CONQUISTAS
+    // =========================
     static hasAchievement(id) {
 
         const user =
@@ -480,6 +564,140 @@ export default class UserModel {
 
     }
 
+    static unlockAchievement(id) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id === data.currentUser
+            );
+
+        if (!user) {
+            return;
+        }
+
+        if (
+
+            !user.achievements.includes(id)
+
+        ) {
+
+            user.achievements.push(id);
+
+            this.saveData(data);
+
+        }
+
+    }
+
+    static getEquippedAchievements() {
+
+        const user =
+            this.getCurrentUser();
+
+        return user
+            ? user.equippedAchievements
+            : [];
+
+    }
+
+    static equipAchievement(id) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id ===
+                    data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        const index =
+
+            user.equippedAchievements.findIndex(
+                slot =>
+                    slot === null
+            );
+
+        if (index !== -1) {
+
+            user.equippedAchievements[index] =
+                id;
+
+        }
+
+        this.saveData(data);
+
+    }
+
+    static toggleAchievement(id) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id ===
+                    data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        const equippedIndex =
+
+            user.equippedAchievements.indexOf(
+                id
+            );
+
+        if (equippedIndex !== -1) {
+
+            user.equippedAchievements[
+                equippedIndex
+            ] = null;
+
+        }
+
+        else {
+
+            const freeSlot =
+
+                user.equippedAchievements.findIndex(
+                    slot =>
+                        slot === null
+                );
+
+            if (freeSlot !== -1) {
+
+                user.equippedAchievements[
+                    freeSlot
+                ] = id;
+
+            }
+
+        }
+
+        this.saveData(data);
+
+    }
+
+    // =========================
+    // PROGRESSÃO E NÍVEIS
+    // =========================
     static hasCompletedLevel(
         game,
         difficulty,
@@ -623,6 +841,36 @@ export default class UserModel {
 
     }
 
+    static isLevelUnlocked(
+        game,
+        difficulty,
+        level
+    ) {
+
+        level =
+            Number(level);
+
+        if (level === 0) {
+
+            return true;
+
+        }
+
+        return this.hasCompletedLevel(
+
+            game,
+
+            difficulty,
+
+            level - 1
+
+        );
+
+    }
+
+    // =========================
+    // JOGO DA SEQUÊNCIA
+    // =========================
     static addSequenceWin() {
 
         const data =
@@ -680,62 +928,9 @@ export default class UserModel {
 
     }
 
-    static unlockAchievement(id) {
-
-        const data =
-            this.getData();
-
-        const user =
-            data.users.find(
-                user =>
-                    user.id === data.currentUser
-            );
-
-        if (!user) {
-            return;
-        }
-
-        if (
-
-            !user.achievements.includes(id)
-
-        ) {
-
-            user.achievements.push(id);
-
-            this.saveData(data);
-
-        }
-
-    }
-
-    static isLevelUnlocked(
-        game,
-        difficulty,
-        level
-    ) {
-
-        level =
-            Number(level);
-
-        if (level === 0) {
-
-            return true;
-
-        }
-
-        return this.hasCompletedLevel(
-
-            game,
-
-            difficulty,
-
-            level - 1
-
-        );
-
-    }
-
+    // =========================
+    // INVENTÁRIO E LOJA
+    // =========================
     static hasItem(itemId) {
 
         const user =
@@ -953,224 +1148,9 @@ export default class UserModel {
 
     }
 
-    static getTotalCoinsEarned() {
-
-        const user =
-            this.getCurrentUser();
-
-        return user
-            ? user.stats.totalMoedasObtidas
-            : 0;
-
-    }
-
-    static getEquippedAchievements() {
-
-        const user =
-            this.getCurrentUser();
-
-        return user
-            ? user.equippedAchievements
-            : [];
-
-    }
-
-    static equipAchievement(id) {
-
-        const data =
-            this.getData();
-
-        const user =
-            data.users.find(
-                user =>
-                    user.id ===
-                    data.currentUser
-            );
-
-        if (!user) {
-
-            return;
-
-        }
-
-        const index =
-
-            user.equippedAchievements.findIndex(
-                slot =>
-                    slot === null
-            );
-
-        if (index !== -1) {
-
-            user.equippedAchievements[index] =
-                id;
-
-        }
-
-        this.saveData(data);
-
-    }
-
-    static toggleAchievement(id) {
-
-        const data =
-            this.getData();
-
-        const user =
-            data.users.find(
-                user =>
-                    user.id ===
-                    data.currentUser
-            );
-
-        if (!user) {
-
-            return;
-
-        }
-
-        const equippedIndex =
-
-            user.equippedAchievements.indexOf(
-                id
-            );
-
-        if (equippedIndex !== -1) {
-
-            user.equippedAchievements[
-                equippedIndex
-            ] = null;
-
-        }
-
-        else {
-
-            const freeSlot =
-
-                user.equippedAchievements.findIndex(
-                    slot =>
-                        slot === null
-                );
-
-            if (freeSlot !== -1) {
-
-                user.equippedAchievements[
-                    freeSlot
-                ] = id;
-
-            }
-
-        }
-
-        this.saveData(data);
-
-    }
-
-    static toggleItem(
-        category,
-        itemId
-    ) {
-
-        const data =
-            this.getData();
-
-        const user =
-            data.users.find(
-                user =>
-                    user.id ===
-                    data.currentUser
-            );
-
-        if (!user) {
-
-            return;
-
-        }
-
-        if (
-
-            user.equippedItems[
-                category
-            ] === itemId
-
-        ) {
-
-            user.equippedItems[
-                category
-            ] = null;
-
-        }
-
-        else {
-
-            user.equippedItems[
-                category
-            ] = itemId;
-
-        }
-
-        this.saveData(data);
-
-    }
-
-    static addFoundObject() {
-
-        const data =
-            this.getData();
-
-        const user =
-            data.users.find(
-                user =>
-                    user.id ===
-                    data.currentUser
-            );
-
-        if (!user) {
-
-            return;
-
-        }
-
-        user.stats.objetosEncontrados++;
-
-        this.saveData(data);
-
-    }
-
-    static getFoundObjects() {
-
-        const user =
-            this.getCurrentUser();
-
-        return user
-            ? user.stats.objetosEncontrados
-            : 0;
-
-    }
-
-    static addHit() {
-
-        const data =
-            this.getData();
-
-        const user =
-            data.users.find(
-                user =>
-                    user.id === data.currentUser
-            );
-
-        if (!user) {
-
-            return;
-
-        }
-
-        user.stats.alvosAcertados++;
-
-        this.saveData(data);
-
-    }
-
+    // =========================
+    // HISTÓRICO DE JOGOS
+    // =========================
     static addGamePlayed(
         game
     ) {
@@ -1299,4 +1279,74 @@ export default class UserModel {
         this.saveData(data);
 
     }
+
+
+    
+    
+
+    
+    // =========================
+    // OUTROS
+    // =========================
+    static getTotalCoinsEarned() {
+
+        const user =
+            this.getCurrentUser();
+
+        return user
+            ? user.stats.totalMoedasObtidas
+            : 0;
+
+    }
+
+    static toggleItem(
+        category,
+        itemId
+    ) {
+
+        const data =
+            this.getData();
+
+        const user =
+            data.users.find(
+                user =>
+                    user.id ===
+                    data.currentUser
+            );
+
+        if (!user) {
+
+            return;
+
+        }
+
+        if (
+
+            user.equippedItems[
+                category
+            ] === itemId
+
+        ) {
+
+            user.equippedItems[
+                category
+            ] = null;
+
+        }
+
+        else {
+
+            user.equippedItems[
+                category
+            ] = itemId;
+
+        }
+
+        this.saveData(data);
+
+    }
+
+    
+
+    
 }

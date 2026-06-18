@@ -619,11 +619,31 @@ main{
         gap:50px;
     }
 
-    .conquistas{
+    .conquistas-card{
+        margin-top:60px;
+        margin-left: 120px;
+        margin-right: 120px;
 
-        grid-template-columns:
-            repeat(5,1fr);
+        border:1px solid #b8ccff;
+        border-radius:20px;
 
+        padding:18px;
+    }
+
+    .left-column{
+        margin-left: 250px;
+        margin-top: 20px;
+    }
+
+    .right-column{
+        flex:1;
+
+        margin-left: 150px;
+        margin-right: 120px;
+
+        display:flex;
+        flex-direction:column;
+        gap:20px;
     }
 
 }

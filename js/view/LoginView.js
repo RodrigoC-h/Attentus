@@ -2,6 +2,12 @@ import UserModel from "../model/UserModel.js";
 
 export default class LoginView {
 
+    // =========================
+    // INICIALIZAÇÃO
+    // =========================
+    // Liga os eventos de login,
+    // registo e troca de formulários
+
     constructor() {
 
         this.bindEvents();
@@ -9,181 +15,288 @@ export default class LoginView {
 
     }
 
+    // =========================
+    // LOGIN E REGISTO
+    // =========================
+
     bindEvents() {
 
         const btnEntrar =
-            document.getElementById("btnEntrar");
+            document.getElementById(
+                "btnEntrar"
+            );
 
         const btnCriarConta =
-            document.getElementById("btnCriarConta");
+            document.getElementById(
+                "btnCriarConta"
+            );
+
+        // -------------------------
+        // LOGIN
+        // -------------------------
 
         if (btnEntrar) {
 
-            btnEntrar.addEventListener("click", (event) => {
+            btnEntrar.addEventListener(
+                "click",
+                (event) => {
 
-                event.preventDefault();
+                    event.preventDefault();
 
-                const usernameOrEmail =
-                    document.getElementById("loginUser").value;
+                    const usernameOrEmail =
+                        document.getElementById(
+                            "loginUser"
+                        ).value;
 
-                const password =
-                    document.getElementById("loginPassword").value;
+                    const password =
+                        document.getElementById(
+                            "loginPassword"
+                        ).value;
 
-                if (
-                    usernameOrEmail.trim() === "" ||
-                    password.trim() === ""
-                ) {
+                    // Validação dos campos
 
-                    alert(
-                        "Preencha todos os campos."
-                    );
+                    if (
 
-                    return;
+                        usernameOrEmail.trim() === "" ||
+
+                        password.trim() === ""
+
+                    ) {
+
+                        alert(
+                            "Preencha todos os campos."
+                        );
+
+                        return;
+
+                    }
+
+                    const success =
+                        UserModel.login(
+
+                            usernameOrEmail,
+
+                            password
+
+                        );
+
+                    if (success) {
+
+                        window.location.href =
+                            "homepage.html";
+
+                    }
+
+                    else {
+
+                        alert(
+                            "Utilizador ou palavra-passe incorretos."
+                        );
+
+                    }
 
                 }
-                
-                const success =
-                    UserModel.login(
-                        usernameOrEmail,
-                        password
-                    );
-
-                if (success) {
-
-                    window.location.href =
-                        "homepage.html";
-
-                } else {
-
-                    alert(
-                        "Utilizador ou palavra-passe incorretos."
-                    );
-
-                }
-
-            });
+            );
 
         }
 
+        // -------------------------
+        // REGISTO
+        // -------------------------
+
         if (btnCriarConta) {
 
-            btnCriarConta.addEventListener("click", (event) => {
+            btnCriarConta.addEventListener(
+                "click",
+                (event) => {
 
-                event.preventDefault();
+                    event.preventDefault();
 
-                const username =
-                    document.getElementById(
-                        "registerUsername"
-                    ).value;
+                    const username =
+                        document.getElementById(
+                            "registerUsername"
+                        ).value;
 
-                const email =
-                    document.getElementById(
-                        "registerEmail"
-                    ).value;
+                    const email =
+                        document.getElementById(
+                            "registerEmail"
+                        ).value;
 
-                const password =
-                    document.getElementById(
-                        "registerPassword"
-                    ).value;
+                    const password =
+                        document.getElementById(
+                            "registerPassword"
+                        ).value;
 
-                const confirmPassword =
-                    document.getElementById(
-                        "registerConfirmPassword"
-                    ).value;
+                    const confirmPassword =
+                        document.getElementById(
+                            "registerConfirmPassword"
+                        ).value;
 
-                if (
-                    username.trim() === "" ||
-                    email.trim() === "" ||
-                    password.trim() === "" ||
-                    confirmPassword.trim() === ""
-                ) {
+                    // Validação dos campos
 
-                    alert(
-                        "Preencha todos os campos."
-                    );
+                    if (
 
-                    return;
+                        username.trim() === "" ||
+
+                        email.trim() === "" ||
+
+                        password.trim() === "" ||
+
+                        confirmPassword.trim() === ""
+
+                    ) {
+
+                        alert(
+                            "Preencha todos os campos."
+                        );
+
+                        return;
+
+                    }
+
+                    // Confirmação da password
+
+                    if (
+
+                        password !==
+                        confirmPassword
+
+                    ) {
+
+                        alert(
+                            "As palavras-passe não coincidem."
+                        );
+
+                        return;
+
+                    }
+
+                    const success =
+                        UserModel.register(
+
+                            username,
+
+                            email,
+
+                            password
+
+                        );
+
+                    if (success) {
+
+                        window.location.href =
+                            "homepage.html";
+
+                    }
+
+                    else {
+
+                        alert(
+                            "Já existe uma conta com esse utilizador ou email."
+                        );
+
+                    }
 
                 }
-
-                if (password !== confirmPassword) {
-
-                    alert(
-                        "As palavras-passe não coincidem."
-                    );
-
-                    return;
-
-                }
-
-                const success =
-                    UserModel.register(
-                        username,
-                        email,
-                        password
-                    );
-
-                if (success) {
-
-                    window.location.href =
-                        "homepage.html";
-
-                } else {
-
-                    alert(
-                        "Já existe uma conta com esse utilizador ou email."
-                    );
-
-                }
-
-            });
+            );
 
         }
 
     }
 
+    // =========================
+    // TROCA DE FORMULÁRIOS
+    // =========================
+    // Alterna entre login
+    // e registo
+
     bindSwitch() {
 
         const btnLogin =
-            document.getElementById("btnLogin");
+            document.getElementById(
+                "btnLogin"
+            );
 
         const btnRegisto =
-            document.getElementById("btnRegisto");
+            document.getElementById(
+                "btnRegisto"
+            );
 
         const loginForm =
-            document.getElementById("loginForm");
+            document.getElementById(
+                "loginForm"
+            );
 
         const registoForm =
-            document.getElementById("registoForm");
+            document.getElementById(
+                "registoForm"
+            );
 
         if (
+
             !btnLogin ||
+
             !btnRegisto ||
+
             !loginForm ||
+
             !registoForm
+
         ) {
+
             return;
+
         }
 
-        btnLogin.addEventListener("click", () => {
+        // Mostrar login
 
-            btnLogin.classList.add("active");
-            btnRegisto.classList.remove("active");
+        btnLogin.addEventListener(
+            "click",
+            () => {
 
-            loginForm.classList.remove("hidden");
-            registoForm.classList.add("hidden");
+                btnLogin.classList.add(
+                    "active"
+                );
 
-        });
+                btnRegisto.classList.remove(
+                    "active"
+                );
 
-        btnRegisto.addEventListener("click", () => {
+                loginForm.classList.remove(
+                    "hidden"
+                );
 
-            btnRegisto.classList.add("active");
-            btnLogin.classList.remove("active");
+                registoForm.classList.add(
+                    "hidden"
+                );
 
-            registoForm.classList.remove("hidden");
-            loginForm.classList.add("hidden");
+            }
+        );
 
-        });
+        // Mostrar registo
+
+        btnRegisto.addEventListener(
+            "click",
+            () => {
+
+                btnRegisto.classList.add(
+                    "active"
+                );
+
+                btnLogin.classList.remove(
+                    "active"
+                );
+
+                registoForm.classList.remove(
+                    "hidden"
+                );
+
+                loginForm.classList.add(
+                    "hidden"
+                );
+
+            }
+        );
 
     }
 

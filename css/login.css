@@ -127,9 +127,17 @@ main{
 @media (min-width:1024px){
 
     body{
-        max-width:500px;
-        border-left:1px solid #2c2d38;
-        border-right:1px solid #2c2d38;
+        max-width:1210px;
+    }
+
+    #loginForm{
+        margin-left: 300px;
+        margin-right: 300px;
+    }
+
+    #registoForm{
+        margin-left: 300px;
+        margin-right: 300px;
     }
 
 }

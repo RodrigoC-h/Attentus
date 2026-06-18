@@ -1,10 +1,21 @@
 import HeaderComponent from "../components/HeaderComponent.js";
 import UserModel from "../model/UserModel.js";
 
+// =========================
+// MINI JOGOS
+// =========================
+// Página que apresenta os
+// jogos disponíveis ao utilizador.
 export default class MiniJogosView {
 
+    // =========================
+    // INICIALIZAÇÃO
+    // =========================
+    // Verifica se existe sessão
+    // iniciada e prepara a página.
     constructor() {
 
+        // Impede acesso sem login
         if (!UserModel.isLoggedIn()) {
 
             window.location.href =
@@ -14,12 +25,18 @@ export default class MiniJogosView {
 
         }
 
+        // Ativa os eventos do cabeçalho
         new HeaderComponent();
 
         this.bindEvents();
 
     }
 
+    // =========================
+    // EVENTOS DOS CARTÕES
+    // =========================
+    // Associa cada cartão ao
+    // respetivo jogo.
     bindEvents() {
 
         const cardReacao =
@@ -34,6 +51,7 @@ export default class MiniJogosView {
         const cardAlvo =
             document.getElementById("cardAlvo");
 
+        // Cartão do jogo da reação
         if (cardReacao) {
 
             cardReacao.addEventListener("click", () => {
@@ -45,6 +63,7 @@ export default class MiniJogosView {
 
         }
 
+        // Cartão do jogo do foco
         if (cardFoco) {
 
             cardFoco.addEventListener("click", () => {
@@ -56,6 +75,7 @@ export default class MiniJogosView {
 
         }
 
+        // Cartão do jogo da sequência
         if (cardSequencia) {
 
             cardSequencia.addEventListener("click", () => {
@@ -67,6 +87,7 @@ export default class MiniJogosView {
 
         }
 
+        // Cartão do jogo do alvo
         if (cardAlvo) {
 
                 cardAlvo.addEventListener("click", () => {

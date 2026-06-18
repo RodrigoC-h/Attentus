@@ -1,4 +1,12 @@
+import UserModel from "../model/UserModel.js";
+
 export default class IntroView {
+
+    // =========================
+    // INICIALIZAÇÃO
+    // =========================
+    // Liga os cartões dos
+    // tutoriais do intro
 
     constructor() {
 
@@ -6,16 +14,32 @@ export default class IntroView {
 
     }
 
+    // =========================
+    // EVENTOS DOS CARTÕES
+    // =========================
+    // Cada cartão abre a versão
+    // tutorial do respetivo jogo
+
     bindEvents() {
 
         const cardReacao =
-            document.getElementById("cardReacao");
+            document.getElementById(
+                "cardReacao"
+            );
 
         const cardSequencia =
-            document.getElementById("cardSequencia");
+            document.getElementById(
+                "cardSequencia"
+            );
 
         const cardAlvo =
-            document.getElementById("cardAlvo");
+            document.getElementById(
+                "cardAlvo"
+            );
+
+        // -------------------------
+        // JOGO DA REAÇÃO
+        // -------------------------
 
         if (cardReacao) {
 
@@ -31,6 +55,11 @@ export default class IntroView {
 
         }
 
+        // -------------------------
+        // JOGO DA SEQUÊNCIA
+        // -------------------------
+        // Abre o nível tutorial
+
         if (cardSequencia) {
 
             cardSequencia.addEventListener(
@@ -44,6 +73,11 @@ export default class IntroView {
             );
 
         }
+
+        // -------------------------
+        // JOGO DO ALVO
+        // -------------------------
+        // Abre o nível tutorial
 
         if (cardAlvo) {
 
@@ -59,8 +93,14 @@ export default class IntroView {
 
         }
 
+        // -------------------------
+        // CONTINUAR
+        // -------------------------
+
         const btnContinuar =
-            document.getElementById("btnContinuar");
+            document.getElementById(
+                "btnContinuar"
+            );
 
         if (btnContinuar) {
 

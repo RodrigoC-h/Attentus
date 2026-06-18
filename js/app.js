@@ -1,3 +1,8 @@
+// =========================
+// IMPORTAÇÕES
+// =========================
+// Importa todas as páginas
+// da aplicação.
 import StorageManager from "./managers/StorageManager.js";
 
 import HomepageView from "./view/HomepageView.js";
@@ -12,10 +17,18 @@ import DificuldadeView from "./view/DificuldadeView.js";
 import NiveisView from "./view/NiveisView.js";
 import AdminView from "./view/AdminView.js";
 
+// Inicializa a estrutura de dados
+// da aplicação no localStorage
 StorageManager.initialize();
 
+// Obtém o nome da página atual
 const pagina = window.location.pathname;
 
+// =========================
+// ARRANQUE DAS PÁGINAS
+// =========================
+// Cria apenas a View
+// correspondente à página atual.
 if (pagina.includes("homepage.html")) {
     new HomepageView();
 }

@@ -3,6 +3,11 @@ import UserModel from "../model/UserModel.js";
 
 export default class DificuldadeView {
 
+    // =========================
+    // INICIALIZAÇÃO
+    // =========================
+    // Verifica se existe sessão
+    // iniciada e carrega o header
     constructor() {
 
         if (!UserModel.isLoggedIn()) {
@@ -20,8 +25,14 @@ export default class DificuldadeView {
 
     }
 
+    // =========================
+    // EVENTOS DOS BOTÕES
+    // =========================
+    // Liga os botões de dificuldade
+    // ao jogo selecionado
     bindEvents() {
 
+        // Obtém o jogo recebido pela URL
         const game =
             new URLSearchParams(window.location.search)
                 .get("game");
@@ -38,6 +49,9 @@ export default class DificuldadeView {
         const btnVoltar =
             document.getElementById("btnVoltar");
 
+        // -------------------------
+        // VOLTAR
+        // -------------------------
         if (btnVoltar) {
 
             btnVoltar.addEventListener("click", () => {
@@ -49,43 +63,11 @@ export default class DificuldadeView {
 
         }
 
-        if (game === "escape") {
-
-            if (btnFacil) {
-
-                btnFacil.addEventListener("click", () => {
-
-                    window.location.href =
-                        "jogo.html?game=escape&difficulty=facil";
-
-                });
-
-            }
-
-            if (btnMedio) {
-
-                btnMedio.addEventListener("click", () => {
-
-                    window.location.href =
-                        "jogo.html?game=escape&difficulty=medio";
-
-                });
-
-            }
-
-            if (btnDificil) {
-
-                btnDificil.addEventListener("click", () => {
-
-                    window.location.href =
-                        "jogo.html?game=escape&difficulty=dificil";
-
-                });
-
-            }
-
-        }
-
+        // -------------------------
+        // JOGOS COM NÍVEIS
+        // -------------------------
+        // Abre a página de seleção
+        // de níveis da dificuldade
         if (
             game === "sequencia" ||
             game === "organizacao" ||

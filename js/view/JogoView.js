@@ -3,6 +3,9 @@ import UserModel from "../model/UserModel.js";
 
 export default class JogoView {
 
+    // Construtor da página do jogo.
+    // Obtém os parâmetros da URL,
+    // verifica autenticação e carrega o jogo selecionado.
     constructor() {
 
         const params =
@@ -45,6 +48,8 @@ export default class JogoView {
         this.loadGame();
     }
 
+    // Decide qual jogo deve ser carregado
+    // com base no parâmetro "game" da URL.
     loadGame() {
 
         if (this.game === "sequencia") {
@@ -67,6 +72,8 @@ export default class JogoView {
 
     }
 
+    // Cria toda a interface do jogo
+    // de repetição de sequência.
     renderSequencia() {
 
         if (
@@ -192,6 +199,8 @@ export default class JogoView {
         this.showSequence();
     }
 
+    // Mostra visualmente a sequência ao jogador,
+    // iluminando cada cor pela ordem correta.
     showSequence() {
 
         let index = 0;
@@ -234,6 +243,8 @@ export default class JogoView {
 
     }
 
+    // Define quantas cores a sequência terá
+    // dependendo da dificuldade e do nível.
     getSequenceLength() {
 
         const level =
@@ -284,6 +295,8 @@ export default class JogoView {
 
     }
 
+    // Gera a sequência de cores que o jogador
+    // terá de memorizar e repetir.
     generateSequence() {
 
         if (Number(this.level) === 0) {
@@ -368,6 +381,8 @@ export default class JogoView {
 
     }
 
+    // Ativa os cliques do jogador e verifica
+    // se a sequência introduzida está correta.
     enableClicks() {
 
         this.playerSequence = [];
@@ -446,6 +461,9 @@ export default class JogoView {
 
     }
 
+    // Trata da vitória:
+    // recompensa, XP, moedas,
+    // conquistas e desbloqueio de níveis.
     showWinModal() {
 
         if (this.isIntroTutorial) {
@@ -704,6 +722,8 @@ export default class JogoView {
 
     }
 
+    // Mostra o modal de derrota
+    // e permite reiniciar o nível.
     showLoseModal() {
 
         UserModel.resetSequenceWinStreak();
@@ -756,6 +776,7 @@ export default class JogoView {
 
     }
 
+    // Cria a interface do jogo da reação.
     renderReacao() {
 
         if (
@@ -826,6 +847,9 @@ export default class JogoView {
 
     }
 
+    // Controla toda a lógica do jogo:
+    // semáforo, tempo aleatório e cálculo
+    // do tempo de reação do jogador.
     startReactionGame() {
 
         if (this.isIntroTutorial) {
@@ -967,6 +991,8 @@ export default class JogoView {
 
     }
 
+    // Inicializa o jogo do foco,
+    // carregando páginas e objetivos.
     renderFoco() {
 
         if (
@@ -1098,6 +1124,8 @@ export default class JogoView {
 
     }
 
+    // Carrega uma nova imagem do jogo do foco,
+    // objetivos e cronómetro.
     loadFocusPage() {
 
         const randomIndex =
@@ -1337,6 +1365,8 @@ export default class JogoView {
         }
     }
 
+    // Cria as áreas clicáveis dos objetos
+    // escondidos na imagem.
     createPage1Hitboxes() {
 
         const container =
@@ -1863,6 +1893,8 @@ export default class JogoView {
 
     }
 
+    // Associa eventos às hitboxes,
+    // verificando objetos encontrados.
     bindHitboxes() {
 
         const hitboxes =
@@ -1959,6 +1991,8 @@ export default class JogoView {
 
     }
 
+    // Verifica se existem mais páginas.
+    // Caso contrário termina o jogo.
     completeFocusPage() {
 
         if (
@@ -1984,6 +2018,8 @@ export default class JogoView {
 
     }
 
+    // Finaliza o jogo do foco,
+    // atribuindo recompensas ao jogador.
     finishFocusGame() {
 
         UserModel.addXp(
@@ -2031,6 +2067,8 @@ export default class JogoView {
 
     }
 
+    // Cria a interface do jogo do alvo
+    // e define objetivo e dificuldade.
     renderAlvo() {
 
         if (
@@ -2311,6 +2349,8 @@ export default class JogoView {
         
     }
 
+    // Move o alvo para uma posição aleatória
+    // dentro da área de jogo.
     moveTarget() {
 
         const target =
@@ -2343,6 +2383,8 @@ export default class JogoView {
 
     }
 
+    // Trata da vitória no jogo do alvo,
+    // atribuindo recompensas e progresso.
     showAlvoWinModal() {
 
         if (this.isIntroTutorial) {
@@ -2493,6 +2535,8 @@ export default class JogoView {
 
     }
 
+    // Mostra o modal de derrota
+    // quando o tempo termina.
     showAlvoLoseModal() {
 
         const modal =
@@ -2515,6 +2559,8 @@ export default class JogoView {
 
     }
 
+    // Mostra o modal de conclusão
+    // da dificuldade atual.
     showAlvoDifficultyCompleteModal() {
 
         document
@@ -2547,6 +2593,8 @@ export default class JogoView {
 
     }
 
+    // Mostra o modal final dos tutoriais
+    // e redireciona para o login.
     showIntroFinishModal() {
 
         document.body.insertAdjacentHTML(

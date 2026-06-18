@@ -113,9 +113,19 @@ main{
 @media (min-width:1024px){
 
     body{
-        max-width:700px;
-        border-left:1px solid #2c2d38;
-        border-right:1px solid #2c2d38;
+        max-width:1210px;
+    }
+
+    .dificuldades{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:28px;
+
+        margin-top: 90px;
+
+        transform: scale(130%);
+
     }
 
 }

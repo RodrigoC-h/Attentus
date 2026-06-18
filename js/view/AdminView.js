@@ -2,98 +2,163 @@ import UserModel from "../model/UserModel.js";
 
 export default class AdminView {
 
+    // =========================
+    // INICIALIZAÇÃO
+    // =========================
+    // Verifica se o utilizador é
+    // administrador antes de
+    // permitir o acesso ao painel
+
     constructor() {
 
         if (
-            localStorage.getItem("isAdmin")
-            !== "true"
+
+            localStorage.getItem(
+                "isAdmin"
+            ) !== "true"
+
         ) {
 
             window.location.href =
                 "homepage.html";
 
             return;
+
         }
 
         this.bindEvents();
+
     }
+
+    // =========================
+    // EVENTOS DOS BOTÕES
+    // =========================
+    // Liga cada botão à respetiva
+    // funcionalidade administrativa
 
     bindEvents() {
 
-        document.getElementById("add100Coins")
-            .onclick = () => {
-                UserModel.addCoins(100);
-            };
+        // -------------------------
+        // MOEDAS
+        // -------------------------
 
-        document.getElementById("add500Coins")
-            .onclick = () => {
-                UserModel.addCoins(500);
-            };
+        document.getElementById(
+            "add100Coins"
+        ).onclick = () => {
 
-        document.getElementById("add100Xp")
-            .onclick = () => {
-                UserModel.addXp(100);
-            };
+            UserModel.addCoins(100);
 
-        document.getElementById("add500Xp")
-            .onclick = () => {
-                UserModel.addXp(500);
-            };
+        };
 
-        document.getElementById("unlockAllLevels")
-            .onclick = () => {
+        document.getElementById(
+            "add500Coins"
+        ).onclick = () => {
 
-                const data =
-                    UserModel.getData();
+            UserModel.addCoins(500);
 
-                const user =
-                    data.users.find(
-                        user =>
-                            user.id ===
-                            data.currentUser
-                    );
+        };
 
-                if (!user) {
-                    return;
-                }
+        // -------------------------
+        // EXPERIÊNCIA
+        // -------------------------
 
-                user.completedLevels.sequencia = [];
-                user.completedLevels.alvo = [];
+        document.getElementById(
+            "add100Xp"
+        ).onclick = () => {
 
-                ["facil", "medio", "dificil"]
-                    .forEach(difficulty => {
+            UserModel.addXp(100);
 
-                        for (
-                            let level = 0;
-                            level <= 23;
-                            level++
-                        ) {
+        };
 
-                            user.completedLevels
-                                .sequencia
-                                .push(
-                                    `${difficulty}-${level}`
-                                );
+        document.getElementById(
+            "add500Xp"
+        ).onclick = () => {
 
-                            user.completedLevels
-                                .alvo
-                                .push(
-                                    `${difficulty}-${level}`
-                                );
-                        }
-                    });
+            UserModel.addXp(500);
 
-                UserModel.saveData(data);
+        };
 
-                alert("Níveis desbloqueados!");
-            };
+        // -------------------------
+        // DESBLOQUEAR NÍVEIS
+        // -------------------------
+        // Marca todos os níveis dos
+        // jogos Sequência e Alvo
+        // como concluídos
 
-        document.getElementById("btnBack")
-            .onclick = () => {
+        document.getElementById(
+            "unlockAllLevels"
+        ).onclick = () => {
 
-                window.location.href =
-                    "homepage.html";
-            };
+            const data =
+                UserModel.getData();
+
+            const user =
+                data.users.find(
+                    user =>
+                        user.id ===
+                        data.currentUser
+                );
+
+            if (!user) {
+
+                return;
+
+            }
+
+            user.completedLevels.sequencia = [];
+            user.completedLevels.alvo = [];
+
+            ["facil", "medio", "dificil"]
+                .forEach(difficulty => {
+
+                    for (
+
+                        let level = 0;
+
+                        level <= 23;
+
+                        level++
+
+                    ) {
+
+                        user.completedLevels
+                            .sequencia
+                            .push(
+                                `${difficulty}-${level}`
+                            );
+
+                        user.completedLevels
+                            .alvo
+                            .push(
+                                `${difficulty}-${level}`
+                            );
+
+                    }
+
+                });
+
+            UserModel.saveData(data);
+
+            alert(
+                "Níveis desbloqueados!"
+            );
+
+        };
+
+        // -------------------------
+        // VOLTAR
+        // -------------------------
+        // Regressa à homepage
+
+        document.getElementById(
+            "btnBack"
+        ).onclick = () => {
+
+            window.location.href =
+                "homepage.html";
+
+        };
+
     }
 
 }

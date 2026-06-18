@@ -50,21 +50,10 @@ body{
     padding:0 24px 40px;
 }
 
-.dias{
-    margin-top:10px;
-}
-
 .linha{
     height:1px;
     background:#c9d7ff;
     opacity:.8;
-}
-
-.dias-container{
-    display:flex;
-    justify-content:space-between;
-
-    padding:12px 0;
 }
 
 .dia{
@@ -238,9 +227,11 @@ h2{
 @media (min-width:1024px){
 
     body{
-        max-width:1250px;
-        border-left:1px solid #2c2d38;
-        border-right:1px solid #2c2d38;
+        max-width:1210px;
+    }
+
+    .container{
+        padding:0 240px 70px;
     }
 
     main{

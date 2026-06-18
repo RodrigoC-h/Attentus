@@ -3,6 +3,12 @@ import UserModel from "../model/UserModel.js";
 
 export default class LojaView {
 
+    // =========================
+    // INICIALIZAÇÃO
+    // =========================
+    // Verifica autenticação,
+    // inicializa os itens da loja
+    // e carrega a interface.
     constructor() {
 
         if (!UserModel.isLoggedIn()) {
@@ -16,6 +22,11 @@ export default class LojaView {
 
         new HeaderComponent();
 
+        // =========================
+        // CATÁLOGO DE AVATARES
+        // =========================
+        // Define todos os avatares
+        // disponíveis para compra.
         this.avatars = [
 
             { id: "avatar_azul", price: 0 },
@@ -30,6 +41,11 @@ export default class LojaView {
 
         ];
 
+        // =========================
+        // CATÁLOGO DE CHAPÉUS
+        // =========================
+        // Define todos os acessórios
+        // de cabeça disponíveis.
         this.hats = [
 
             { id: "bone", price: 10 },
@@ -44,6 +60,11 @@ export default class LojaView {
 
         ];
 
+        // =========================
+        // CATÁLOGO DE ACESSÓRIOS
+        // =========================
+        // Define os acessórios
+        // equipáveis na cara.
         this.faceAccessories = [
 
             { id: "oculos", price: 10 },
@@ -58,6 +79,11 @@ export default class LojaView {
 
         ];
 
+        // =========================
+        // CONQUISTAS DISPONÍVEIS
+        // =========================
+        // Conquistas que podem ser
+        // equipadas no perfil.
         this.achievements = [
 
             { id: "primeira_vitoria" },
@@ -79,6 +105,11 @@ export default class LojaView {
 
     }
 
+    // =========================
+    // ATUALIZAR PREVIEW
+    // =========================
+    // Atualiza a imagem do avatar
+    // atualmente equipado.
     updatePreviewAvatar() {
 
         const preview =
@@ -98,6 +129,12 @@ export default class LojaView {
 
     }
 
+    // =========================
+    // NAVEGAÇÃO ENTRE ABAS
+    // =========================
+    // Alterna entre avatares,
+    // chapéus, acessórios e
+    // conquistas.
     bindTabs() {
 
         document
@@ -146,6 +183,12 @@ export default class LojaView {
 
     }
 
+    // =========================
+    // MOSTRAR AVATARES
+    // =========================
+    // Cria os cartões dos avatares
+    // e mostra o respetivo estado:
+    // comprado, equipado ou bloqueado.
     renderAvatars() {
 
         const container =
@@ -158,12 +201,14 @@ export default class LojaView {
         this.avatars.forEach(
             avatar => {
 
+                // Verifica se o avatar já foi comprado
                 const owned =
 
                     UserModel.hasItem(
                         avatar.id
                     );
 
+                // Verifica se o avatar está equipado
                 const equipped =
 
                     UserModel.getAvatar()
@@ -222,6 +267,11 @@ export default class LojaView {
 
     }
 
+    // =========================
+    // COMPRA E EQUIPAR AVATARES
+    // =========================
+    // Trata da compra e seleção
+    // de avatares.
     bindAvatarEvents() {
 
         const buttons =
@@ -240,6 +290,8 @@ export default class LojaView {
                         const id =
                             button.dataset.id;
 
+                        // Se já possuir o avatar,
+                        // apenas equipa.
                         if (
 
                             UserModel.hasItem(
@@ -256,6 +308,8 @@ export default class LojaView {
 
                         else {
 
+                            // Verifica se existem moedas
+                            // suficientes para comprar.
                             if (
 
                                 UserModel.getCoins()
@@ -299,6 +353,11 @@ export default class LojaView {
 
     }
 
+    // =========================
+    // MOSTRAR CHAPÉUS
+    // =========================
+    // Cria os itens da categoria
+    // de acessórios de cabeça.
     renderHats() {
 
         const container =
@@ -377,6 +436,11 @@ export default class LojaView {
 
     }
 
+    // =========================
+    // COMPRA E EQUIPAR CHAPÉUS
+    // =========================
+    // Permite comprar e equipar
+    // acessórios de cabeça.
     bindHatEvents() {
 
         const buttons =
@@ -453,6 +517,11 @@ export default class LojaView {
 
     }
 
+    // =========================
+    // MOSTRAR ACESSÓRIOS FACIAIS
+    // =========================
+    // Cria os itens da categoria
+    // de acessórios faciais.
     renderFaceAccessories() {
 
         const container =
@@ -532,6 +601,11 @@ export default class LojaView {
 
     }
 
+    // =========================
+    // COMPRA E EQUIPAR ACESSÓRIOS
+    // =========================
+    // Permite comprar e equipar
+    // acessórios faciais.
     bindFaceEvents() {
 
         const buttons =
@@ -607,6 +681,11 @@ export default class LojaView {
 
     }
 
+    // =========================
+    // MOSTRAR CONQUISTAS
+    // =========================
+    // Mostra as conquistas
+    // desbloqueadas pelo utilizador.
     renderAchievements() {
 
         const container =
@@ -619,12 +698,16 @@ export default class LojaView {
         this.achievements.forEach(
             achievement => {
 
+                // Verifica se a conquista
+                // já foi desbloqueada.
                 const unlocked =
 
                     UserModel.hasAchievement(
                         achievement.id
                     );
                 
+                // Verifica se a conquista
+                // está atualmente equipada.
                 const equipped =
 
                     UserModel
@@ -667,6 +750,11 @@ export default class LojaView {
 
     }
 
+    // =========================
+    // EQUIPAR CONQUISTAS
+    // =========================
+    // Permite equipar ou remover
+    // conquistas do perfil.
     bindAchievementEvents() {
 
         const buttons =

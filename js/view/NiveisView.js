@@ -1,8 +1,18 @@
 import HeaderComponent from "../components/HeaderComponent.js";
 import UserModel from "../model/UserModel.js";
 
+// =========================
+// SELEÇÃO DE NÍVEIS
+// =========================
+// Mostra os níveis disponíveis
+// para um jogo e dificuldade.
 export default class NiveisView {
-
+    
+    // =========================
+    // INICIALIZAÇÃO
+    // =========================
+    // Verifica login, ativa o
+    // cabeçalho e carrega o progresso.
     constructor() {
 
         if (!UserModel.isLoggedIn()) {
@@ -18,12 +28,20 @@ export default class NiveisView {
 
         this.bindEvents();
 
+        // Atualiza os níveis concluídos
+        // e bloqueados
         this.loadProgress();
 
     }
 
+    // =========================
+    // CARREGAR PROGRESSO
+    // =========================
+    // Verifica quais os níveis
+    // concluídos e desbloqueados.
     loadProgress() {
 
+        // Obtém os parâmetros da URL
         const params =
             new URLSearchParams(
                 window.location.search
@@ -40,11 +58,15 @@ export default class NiveisView {
                 ".level"
             );
 
+        // Percorre todos os níveis
+        // apresentados na página
         levels.forEach((level) => {
 
             const levelNumber =
                 level.dataset.level;
 
+            // Marca visualmente os níveis
+            // já concluídos
             if (
 
                 UserModel.hasCompletedLevel(
@@ -65,6 +87,8 @@ export default class NiveisView {
 
             }
 
+            // Bloqueia níveis ainda não
+            // disponíveis ao jogador
             if (
 
                 !UserModel.isLevelUnlocked(
@@ -91,6 +115,10 @@ export default class NiveisView {
 
     }
 
+    // =========================
+    // EVENTOS DOS NÍVEIS
+    // =========================
+    // Liga os botões da página.
     bindEvents() {
 
         const params =
@@ -108,6 +136,8 @@ export default class NiveisView {
         const btnVoltar =
             document.getElementById("btnVoltar");
 
+        // Volta para a seleção
+        // de dificuldade
         if (btnVoltar) {
 
             btnVoltar.addEventListener("click", () => {
@@ -125,6 +155,8 @@ export default class NiveisView {
 
         }
 
+        // Associa um clique
+        // a cada nível
         niveis.forEach((nivel) => {
 
             nivel.addEventListener("click", () => {
@@ -132,6 +164,8 @@ export default class NiveisView {
                 const numero =
                     nivel.dataset.level;
 
+                // Impede acesso a níveis
+                // ainda bloqueados
                 if (
 
                     !UserModel.isLevelUnlocked(
@@ -150,6 +184,7 @@ export default class NiveisView {
 
                 }
 
+                // Inicia o nível escolhido
                 window.location.href =
                     `jogo.html?game=${game}&difficulty=${difficulty}&level=${numero}`;
 

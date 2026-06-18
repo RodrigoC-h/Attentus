@@ -3,6 +3,13 @@ import UserModel from "../model/UserModel.js";
 
 export default class HomepageView {
 
+    // =========================
+    // INICIALIZAÇÃO
+    // =========================
+    // Verifica se existe sessão
+    // iniciada e carrega os
+    // elementos da homepage
+
     constructor() {
 
         if (!UserModel.isLoggedIn()) {
@@ -21,6 +28,12 @@ export default class HomepageView {
         this.bindEvents();
 
     }
+
+    // =========================
+    // JOGOS RECENTES
+    // =========================
+    // Mostra os últimos jogos
+    // jogados pelo utilizador
 
     renderRecentGames() {
 
@@ -43,6 +56,9 @@ export default class HomepageView {
         container.innerHTML = "";
 
         games.forEach(game => {
+
+            // Converte o identificador
+            // interno para o nome visível
 
             let nome = "";
 
@@ -82,6 +98,9 @@ export default class HomepageView {
             `;
 
         });
+
+        // Liga cada cartão ao
+        // respetivo jogo
 
         document
             .querySelectorAll(
@@ -148,18 +167,31 @@ export default class HomepageView {
 
     }
 
+    // =========================
+    // EVENTOS DOS BOTÕES
+    // =========================
+
     bindEvents() {
 
         const btnMaisJogos =
-            document.getElementById("btnMaisJogos");
+            document.getElementById(
+                "btnMaisJogos"
+            );
 
         if (btnMaisJogos) {
 
-            btnMaisJogos.addEventListener("click", () => {
-                window.location.href = "mini-jogos.html";
-                
-            });
+            btnMaisJogos.addEventListener(
+                "click",
+                () => {
+
+                    window.location.href =
+                        "mini-jogos.html";
+
+                }
+            );
+
         }
+
     }
 
 }
