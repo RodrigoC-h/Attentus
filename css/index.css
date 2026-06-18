@@ -121,20 +121,3 @@
 #texto p{
     font-family: "Porto Sans Stencil", sans-serif;
 }
-
-@media (min-width:1024px){
-
-    .splash-container{
-
-        max-width:700px;
-
-        margin:0 auto;
-
-        border-left:1px solid #2c2d38;
-        border-right:1px solid #2c2d38;
-
-        min-height:100vh;
-
-    }
-
-}
