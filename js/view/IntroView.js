@@ -10,17 +10,29 @@ export default class IntroView {
 
     constructor() {
 
-        this.bindEvents();
-
-    }
-
     // =========================
     // EVENTOS DOS CARTÕES
     // =========================
     // Cada cartão abre a versão
     // tutorial do respetivo jogo
 
+        // Se o HTML ainda estiver a carregar, espera. Se já carregou, liga os eventos imediatamente.
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", () => this.bindEvents());
+        } else {
+            this.bindEvents();
+        }
+    }
+
     bindEvents() {
+        console.log("IntroView: A ligar os eventos dos botões!"); // Vê se isto aparece na consola!
+
+        const btnPerfil = document.getElementById('btnPerfil');
+        if (btnPerfil) {
+            btnPerfil.addEventListener('click', function() {
+                window.location.href = 'login.html';
+            });
+        }
 
         const cardReacao =
             document.getElementById(
